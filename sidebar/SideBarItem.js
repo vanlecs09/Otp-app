@@ -11,15 +11,6 @@ export default class SideBarItem extends React.Component {
             <Text>
                 this is item
                 </Text>
-            // <View>
-            //     <Image>
-            //     </Image>
-            //     <Text>
-            //     </Text>
-            //     <Text>
-
-            //     </Text>
-            // </View>
         )
     }
 }
