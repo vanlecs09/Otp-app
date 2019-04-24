@@ -1,43 +1,27 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-import LoginScreen from './screens/login/LoginScreen'
-import DepositScreen from './screens/deposit/DepositScreen';
-import NavigationService from './services/NavigationService';
+import { createAppContainer, createDrawerNavigator } from 'react-navigation';
+import LoginScreen from './login/LoginScreen'
+import DepositScreen from './deposit/DepositScreen';
+import SideBar from './sidebar/SideBar';
 
-const MainNavigator = createSwitchNavigator({
+
+
+const MyDrawerNavigator = createDrawerNavigator({
   LoginScreen: { screen: LoginScreen },
-  DepositScreen: { screen: DepositScreen }
-})
+  DepositScreen: { screen: DepositScreen },},
+  {
+    contentComponent: props => <SideBar {...props} />
+  }
+  );
 
 
-const AppContainer = createAppContainer(MainNavigator);
+const AppCon2 = createAppContainer(MyDrawerNavigator);
 
 export default class App extends React.Component {
   render() {
     return (
-      <ImageBackground source={require('./assets/img_bg.png')} style={styles.container}>
-        <View style={{ width: '100%', height: '8%' }}>
-          <Button
-            title="ĐĂNG NHẬP"
-            onPress={() => {NavigationService.navigate('LoginScreen')}}>
-          </Button>
-        </View>
-        <AppContainer
-          ref={navigatorRef => {
-            NavigationService.setContainer(navigatorRef);
-          }}
-        />
-      </ImageBackground>
+        <AppCon2>
+        </AppCon2>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
