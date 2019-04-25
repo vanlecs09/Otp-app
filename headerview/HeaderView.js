@@ -11,9 +11,9 @@ export default class HeaderView extends React.Component {
 
     render() {
         return (
-            <View style={{ marginTop: 20, width: '100%', height: '8%', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={{ marginTop: 20, width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Image source={require('./res/icon_otp.png')} style = {{width: 40, height: 40, marginLeft: 10}}/>
-                <Text style={{ alignSelf: 'center' }}>
+                <Text style={{fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: 30, color:'#ffd700' }}>
                     {this.props.titleName}
                 </Text>
                 <ButtonImageNavigation normalImage = {btnNavNormal} selectImage = {btnSelect}>

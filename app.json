@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "well come to otp app",
+    "name": "otp-app",
     "slug": "otp-app",
     "privacy": "public",
     "sdkVersion": "32.0.0",

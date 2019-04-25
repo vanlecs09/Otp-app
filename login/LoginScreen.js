@@ -1,49 +1,61 @@
 import React from 'react';
 import { TextInput, ImageBackground, Image, StyleSheet, Text, View, Button } from 'react-native';
 import HeaderView from '../headerview/HeaderView';
+import ButtonHighLight from '../components/ButtonHighLight';
+import ButtonImage from '../components/ButtonImage';
 
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.titleName = "OTP";
+    // this.titleName = "OTP";
+    this.titleName = "ĐỔI QUÀ";
   }
 
   render() {
     return (
       <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
         <View style={styles.container}>
-        
-          <HeaderView titleName = {this.titleName}></HeaderView>
-          
+
+          <HeaderView titleName={this.titleName}></HeaderView>
+
           <ImageBackground source={require('./res/img_bg2.png')} style={styles.container}>
-            <Text style={{ marginTop: 50 }}>
-              CÁC BƯỚC ĐĂNG NHẬP OTPc{"\n"}
+            <Text style={{ marginTop: 50, fontFamily: 'Montserrat_medium', alignSelf: 'center', fontSize: 15 }}>
+              CÁC BƯỚC ĐĂNG NHẬP APP OTP{"\n"}
             </Text>
-            <Text>
-              1. đăng nhập mã {"\n"}
-              2. abc{"\n"}
-              3. xyz{"\n"}
-            </Text>
+            <Text style={{ fontFamily: 'Montserrat_small', marginLeft: 30, marginRight: 30, fontSize: 12 }}>
+              1. Dăng nhập bằng số điện thoại đã đăng ký{"\n"}
+              2. Một mã OTP sẽ được gửi đến số điện thoại đó{"\n"}
+              3. Dùng mã OTP đó để truy nhập vào App{"\n"}
+            </Text >
 
             <View style={styles.SectionStyle}>
               <ImageBackground
                 source={require('./res/img_input.png')}
                 style={styles.ImageStyle}>
                 <TextInput
-                  style={{ flex: 1, marginLeft: 40 }}
+                  style={{ flex: 1, marginLeft: 40, fontFamily: 'Montserrat_small' }}
                   placeholder="Enter Your Name Here"
                   underlineColorAndroid="transparent"
                 />
               </ImageBackground>
             </View>
 
-            <Text style={{ marginTop: 20 }}>
-              Ma OTP duoc gui den so dien thoai cua ban{"\n"}
-              (*) Phi khi nhan ma OTP SMS la 1000 xu{"\n"}
+            <Text style={{ marginTop: 20, fontFamily: 'Montserrat_small', marginLeft: 30, marginRight: 30, fontSize: 12 }}>
+              Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
+              (*) Phí khi nhận mã OTP SMS la 1000 xu{"\n"}
             </Text>
-            <Button style={{ marginBottom: 0 }}
-              title="ĐĂNG NHẬP"
+            <ButtonHighLight style={{ marginBottom: 0 }}
+              sizeStyle={{ height: 61, width: 209 }}
+              text="ĐĂNG NHẬP"
               onPress={() => this.props.navigation.navigate('DepositScreen')}
+              imageSource={require('../assets/img_btn_1.png')}
+            />
+
+            <ButtonHighLight style={{ marginBottom: 0 }}
+              sizeStyle={{ height: 61, width: 209 }}
+              text="QUAY LẠI"
+              onPress={() => this.props.navigation.navigate('DepositScreen')}
+              imageSource={require('../assets/img_btn_2.png')}
             />
           </ImageBackground>
         </View>
@@ -55,10 +67,10 @@ class LoginScreen extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
-    height: '70%',
+    height: '80%',
   },
 
   ImageStyle: {
@@ -72,14 +84,20 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff0',
     height: 50,
-    width: '80%'
+    width: '80%',
+    alignSelf: 'center',
   },
 
   text: {
     fontSize: 30,
     fontWeight: 'bold',
   },
-  
+
+  iconBtn: {
+    margin: 1,
+    // backgroundColor: '#FFFFCC'
+  },
+
   background: {
     flex: 1,
     alignItems: 'center',

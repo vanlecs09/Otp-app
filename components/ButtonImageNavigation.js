@@ -19,7 +19,7 @@ class ButtonImageNavigation extends React.Component {
     render() {
         return (
             <ImageBackground source={this.state.imageSource} style={styles.background}>
-                <Button style = {{flex:1}}
+                <Button style = {{ marginLeft: 20,flex:1, width:100, height:100, color:'rgb(255,0,255)'}}
                     title=""
                     onPress={() => {
                         this.changeState();
