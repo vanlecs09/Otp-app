@@ -2,22 +2,31 @@ import React from 'react';
 import { TextInput, ImageBackground, Image, StyleSheet, Text, View, Button } from 'react-native';
 import HeaderView from '../headerview/HeaderView';
 import ButtonHighLight from '../components/ButtonHighLight';
-import ButtonImage from '../components/ButtonImage';
+import AnimatedLoader from 'react-native-animated-loader';
+import { requestLogin } from '../actions';
+import { connect } from 'react-redux';
+
 
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
-    // this.titleName = "OTP";
-    this.titleName = "ĐỔI QUÀ";
+    this.titleName = "OTP";
+    this.state = {
+      visible: false
+    };
   }
 
   render() {
     return (
       <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
+        <AnimatedLoader
+          visible={this.props.isFetching}
+          overlayColor="rgba(0,0,0,0.5)"
+          animationStyle={styles.lottie}
+          speed={1}
+        />
         <View style={styles.container}>
-
           <HeaderView titleName={this.titleName}></HeaderView>
-
           <ImageBackground source={require('./res/img_bg2.png')} style={styles.container}>
             <Text style={{ marginTop: 50, fontFamily: 'Montserrat_medium', alignSelf: 'center', fontSize: 15 }}>
               CÁC BƯỚC ĐĂNG NHẬP APP OTP{"\n"}
@@ -27,7 +36,6 @@ class LoginScreen extends React.Component {
               2. Một mã OTP sẽ được gửi đến số điện thoại đó{"\n"}
               3. Dùng mã OTP đó để truy nhập vào App{"\n"}
             </Text >
-
             <View style={styles.SectionStyle}>
               <ImageBackground
                 source={require('./res/img_input.png')}
@@ -39,7 +47,6 @@ class LoginScreen extends React.Component {
                 />
               </ImageBackground>
             </View>
-
             <Text style={{ marginTop: 20, fontFamily: 'Montserrat_small', marginLeft: 30, marginRight: 30, fontSize: 12 }}>
               Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
               (*) Phí khi nhận mã OTP SMS la 1000 xu{"\n"}
@@ -47,7 +54,7 @@ class LoginScreen extends React.Component {
             <ButtonHighLight style={{ marginBottom: 0 }}
               sizeStyle={{ height: 61, width: 209 }}
               text="ĐĂNG NHẬP"
-              onPress={() => this.props.navigation.navigate('DepositScreen')}
+              onPress={() => this.props.login({})}
               imageSource={require('../assets/img_btn_1.png')}
             />
 
@@ -67,7 +74,6 @@ class LoginScreen extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
     height: '80%',
@@ -95,15 +101,34 @@ var styles = StyleSheet.create({
 
   iconBtn: {
     margin: 1,
-    // backgroundColor: '#FFFFCC'
   },
 
   background: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+
+  lottie: {
+    width: 100,
+    height: 100,
+  },
 });
 
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    isFetching: state.login.isFetching
+  }
+}
 
-export default LoginScreen;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (user) => {
+      dispatch(requestLogin(user))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
