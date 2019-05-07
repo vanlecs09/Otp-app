@@ -1,10 +1,28 @@
-import { REQUEST_LOGIN } from '../actions';
+import { START_LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, STOP_LOGIN } from '../actions';
 
-const login = (state = {isFetching : false}, action) => {
-    if (action.type == REQUEST_LOGIN) {
-        console.log("return here");
-        return {
-            isFetching : true
+const login = (state = { isLoading: false }, action) => {
+    const { type, payload } = action;
+
+    switch (type) {
+        case START_LOGIN: {
+            return {
+                isLoading: action.isLoading,
+            }
+        }
+        case LOGIN_SUCCESS: {
+            return {
+                isLoading: action.isLoading,
+            }
+        }
+        case LOGIN_ERROR: {
+            return {
+                isLoading: action.isLoading,
+            }
+        }
+        case STOP_LOGIN: {
+            return {
+                isLoading: action.isLoading,
+            }
         }
     }
 

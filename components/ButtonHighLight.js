@@ -4,16 +4,15 @@ import { TouchableOpacity, Text, StyleSheet, ImageBackground, View, Image } from
 
 class ButtonHighLight extends Component {
 	render() {
-		const { text, onPress, imageSource, sizeStyle } = this.props;
+		const { text, onPress, imageSource, sizeStyle, customStyle } = this.props;
 		const { view} = styles;
-		const viewCombineStyle = StyleSheet.flatten([view, sizeStyle]);
+		const viewCombineStyle = StyleSheet.flatten([view, sizeStyle, customStyle]);
+		console.log(viewCombineStyle);
 		return (
 			<TouchableOpacity style={styles.buttonStyle}
 				onPress={() => onPress()}
 			>
-				<Image style={styles.image}
-					source={imageSource}
-					style={styles.image} />
+				<Image style={styles.image} source={imageSource}/>
 				<View style={viewCombineStyle}>
 					<Text style={styles.textStyle}>{text}</Text>
 				</View>

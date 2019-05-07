@@ -5,10 +5,13 @@ import LoginScreen from './login/LoginScreen'
 import DepositScreen from './deposit/DepositScreen';
 import SideBar from './sidebar/SideBar';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux'
-const store = createStore(rootReducer)
+import thunk from 'redux-thunk';
+const store = createStore(rootReducer, 
+  applyMiddleware(thunk)
+  )
 
 const MyDrawerNavigator = createDrawerNavigator({
   LoginScreen: { screen: LoginScreen },
@@ -27,7 +30,6 @@ export default class App extends React.Component {
     super();
     this.state = {
       isReady: false,
-      fetching: false,
     }
   }
 

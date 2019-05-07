@@ -3,7 +3,7 @@ import { TextInput, ImageBackground, Image, StyleSheet, Text, View, Button } fro
 import HeaderView from '../headerview/HeaderView';
 import ButtonHighLight from '../components/ButtonHighLight';
 import AnimatedLoader from 'react-native-animated-loader';
-import { requestLogin } from '../actions';
+import LoginActions from '../actions';
 import { connect } from 'react-redux';
 
 
@@ -11,16 +11,13 @@ class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.titleName = "OTP";
-    this.state = {
-      visible: false
-    };
   }
 
   render() {
     return (
       <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
         <AnimatedLoader
-          visible={this.props.isFetching}
+          visible={this.props.isLoading}
           overlayColor="rgba(0,0,0,0.5)"
           animationStyle={styles.lottie}
           speed={1}
@@ -116,16 +113,15 @@ var styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
-    isFetching: state.login.isFetching
+    isLoading: state.login.isLoading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     login: (user) => {
-      dispatch(requestLogin(user))
+      dispatch(LoginActions.requestLoginByPass(user));
     }
   }
 }
