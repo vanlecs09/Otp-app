@@ -11,14 +11,14 @@ class CardTypeSelectionView extends Component {
     this.state = {}
   }
   render() {
-    const cardIndex = this.props.cardIndex;
+    const {cardIndex} = this.props;
     return (
-      <View style= {{flex: 1, width : '100%'}}>
+      <View style= {{ width : '100%', height: 110}}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', marginTop: 10 }}>
           <Text style={{ marginLeft: 20 }}>ten tai khoan</Text>
           <Text style={{ marginRight: 20 }}>abc xyz </Text>
         </View>
-        <View style={{ flexDirection: 'row', width: '100%', height: '20%', marginTop: 20, justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', width: '100%', marginTop: 20, justifyContent: 'space-between' }}>
           <ButtonImage
             customStyle={{ height: 100, width: 100, marginLeft: 10 }}
             text="ĐĂNG NHẬP"

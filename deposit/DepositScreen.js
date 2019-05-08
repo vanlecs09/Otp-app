@@ -2,9 +2,15 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
 import AnimatedLoader from 'react-native-animated-loader';
 import AwesomeAlert from '../popup';
-import ButtonImage from '../components/ButtonImage';
 import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
+import DropDown from '../dropdownMenu';
+const {
+    Select,
+    Option,
+    OptionList,
+    updatePosition
+} = DropDown;
 
 export default class DepositScreen extends React.Component {
     constructor(props) {
@@ -26,6 +32,19 @@ export default class DepositScreen extends React.Component {
         });
     };
 
+    _getOptionList() {
+        return this.refs['OPTIONLIST'];
+    }
+
+    _canada(province) {
+
+        this.setState({
+            ...this.state,
+            canada: province
+        });
+    }
+
+
     render() {
         const { showAlert } = this.state;
         return (
@@ -41,12 +60,33 @@ export default class DepositScreen extends React.Component {
 
                     <ImageBackground source={require('../assets/img_bg2.png')} style={styles.container}>
                         <CardTypeSelectionView></CardTypeSelectionView>
+                        <View style={{ flex: 1, justifyContent: 'flex-start'}}>
+                            <Select
+                                width={250}
+                                ref="SELECT1"
+                                optionListRef={this._getOptionList.bind(this)}
+                                defaultValue="Chọn mệnh giá ..."
+                                onSelect={this._canada.bind(this)}
+                                styleOption={{alignSelf:'flex-start', marginTop: 4, backgroundColor : 'rgb(43, 49, 53)', marginLeft: 15}} 
+                                styleText={{color:'white'}}
+                                optionListProps= {{leftOffset:15}}
+                                >
+                      
+                                <Option styleText={{color:'white'}}>Alberta</Option>
+                                <Option styleText={{color:'white'}}>British Columbia</Option>
+                                <Option styleText={{color:'white'}}>Manitoba</Option>
+                                <Option styleText={{color:'white'}}>New Brunswick</Option>
+                            </Select>
+                            <OptionList ref="OPTIONLIST" />
+                        </View>
+
                         <Button
                             title="login screen"
                             onPress={() => {
                                 this.showAlert();
                             }}
                         />
+
                         <AwesomeAlert
                             show={showAlert}
                             showProgress={false}
