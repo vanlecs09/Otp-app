@@ -1,4 +1,4 @@
-import { View } from "native-base";
+// import { View } from "native-base";
 
 class GiftExchange extends Component {
     constructor(props) {

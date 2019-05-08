@@ -150,8 +150,6 @@ export default class Alert extends Component {
       messageStyle
     } = this.props;
 
-    console.log(alertContainerStyle)
-
     const cancelButtonData = {
       text: cancelText,
       backgroundColor: cancelButtonColor,

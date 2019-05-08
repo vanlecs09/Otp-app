@@ -7,7 +7,6 @@ class ButtonHighLight extends Component {
 		const { text, onPress, imageSource, sizeStyle, customStyle } = this.props;
 		const { view} = styles;
 		const viewCombineStyle = StyleSheet.flatten([view, sizeStyle, customStyle]);
-		console.log(viewCombineStyle);
 		return (
 			<TouchableOpacity style={styles.buttonStyle}
 				onPress={() => onPress()}

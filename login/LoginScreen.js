@@ -5,6 +5,7 @@ import ButtonHighLight from '../components/ButtonHighLight';
 import AnimatedLoader from 'react-native-animated-loader';
 import LoginActions from '../actions';
 import { connect } from 'react-redux';
+import * as AppActions from '../actions';
 
 
 class LoginScreen extends React.Component {
@@ -24,7 +25,7 @@ class LoginScreen extends React.Component {
         />
         <View style={styles.container}>
           <HeaderView titleName={this.titleName}></HeaderView>
-          <ImageBackground source={require('./res/img_bg2.png')} style={styles.container}>
+          <ImageBackground source={require('../assets/img_bg2.png')} style={styles.container}>
             <Text style={{ marginTop: 50, fontFamily: 'Montserrat_medium', alignSelf: 'center', fontSize: 15 }}>
               CÁC BƯỚC ĐĂNG NHẬP APP OTP{"\n"}
             </Text>
