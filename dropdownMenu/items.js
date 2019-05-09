@@ -11,10 +11,8 @@ const styles = StyleSheet.create({
   },
   container: {
     position: 'absolute',
-    borderColor: '#BDBDC1',
     borderWidth: 2 / window.scale,
     borderTopColor: 'transparent',
-    backgroundColor: 'white'
   }
 })
 
@@ -24,7 +22,8 @@ export default class Items extends Component {
   }
 
   render() {
-    const { items, positionX, positionY, show, onPress, width, height, children, customScrollViewComp, autoHeightItemsList } = this.props;
+    const { backgroundColor, items, positionX, positionY, show, onPress, width, height, children, customScrollViewComp, autoHeightItemsList } = this.props;
+    console.log(backgroundColor);
     const renderedItems = React.Children.map(items, (item) => {
       return (
         <TouchableWithoutFeedback onPress={() => onPress(item.props.children, item.props.value) }>
@@ -34,11 +33,12 @@ export default class Items extends Component {
         </TouchableWithoutFeedback>
       );
     });
+
     const ScrollViewComp = customScrollViewComp
       ? customScrollViewComp
       : ScrollView
     return (
-      <View style={[styles.container, { top: positionY, left: positionX }]}>
+      <View style={[styles.container, { top: positionY, left: positionX }, {backgroundColor}]}>
         <ScrollViewComp
           style={{ width: width - 2, height: autoHeightItemsList && items.length < 3 ? 'auto' : height * 3 }}
           automaticallyAdjustContentInsets={false}
@@ -65,6 +65,7 @@ Items.defaultProps = {
   positionY: 0,
   show: false,
   onPress: () => {},
-  autoHeightItemsList: false
+  autoHeightItemsList: false,
+  backgroundColor: 'white'
 };
 

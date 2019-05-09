@@ -1,5 +1,5 @@
 import React, { Component, } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Modal } from 'react-native';
 
 import Items from './items'
 import Overlay from './overlay'
@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     height: '100%',
-    width: window.width
+    width: window.width,
+    // justifyContent:'center'
+    // backgroundColor :
   }
 });
 
@@ -80,19 +82,21 @@ export default class OptionList extends Component {
   }
 
   render() {
-    const { customScrollViewComp } = this.props
+    const { backgroundColor, customScrollViewComp } = this.props
     const { items, pageX, pageY, positionX, positionY, width, height, show, optionListProps } = this.state;
 
     if (!show) return null
     return (
+
       <View style={styles.wrapper}>
         <Overlay
           pageX={pageX}
           pageY={pageY}
           show={show}
-          onPress={ this._onOverlayPress.bind(this) }/>
+          onPress={this._onOverlayPress.bind(this)} />
         <Items
           autoHeightItemsList={optionListProps && optionListProps.autoHeightItemsList}
+          backgroundColor={backgroundColor}
           items={items}
           positionX={positionX}
           positionY={positionY}
@@ -100,7 +104,7 @@ export default class OptionList extends Component {
           height={height}
           show={show}
           customScrollViewComp={customScrollViewComp}
-          onPress={ this._onItemPress.bind(this) }/>
+          onPress={this._onItemPress.bind(this)} />
       </View>
     );
   }

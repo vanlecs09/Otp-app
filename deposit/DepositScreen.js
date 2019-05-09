@@ -5,12 +5,16 @@ import AwesomeAlert from '../popup';
 import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
 import DropDown from '../dropdownMenu';
+import EditBox from '../components/EditBox';
+
 const {
     Select,
     Option,
     OptionList,
     updatePosition
 } = DropDown;
+
+const DROPDOWN_MENU_COLOR = 'rgb(43, 49, 53)'
 
 export default class DepositScreen extends React.Component {
     constructor(props) {
@@ -57,59 +61,67 @@ export default class DepositScreen extends React.Component {
                 />
                 <View style={styles.container}>
                     <HeaderView titleName={this.titleName}></HeaderView>
+                    <View style={styles.container2}>
+                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
+                       
+                            <CardTypeSelectionView></CardTypeSelectionView>
+                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10, zIndex: 1 }}>
+                                <Select
+                                    width={250}
+                                    ref="SELECT1"
+                                    height={60}
+                                    optionListRef={this._getOptionList.bind(this)}
+                                    defaultValue="Chọn mệnh giá ..."
+                                    onSelect={this._canada.bind(this)}
+                                    styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height : 20 }}
+                                    styleText={{ color: 'white' }}
+                                    style={{ alignItems: 'center'}}
 
-                    <ImageBackground source={require('../assets/img_bg2.png')} style={styles.container}>
-                        <CardTypeSelectionView></CardTypeSelectionView>
-                        <View style={{ flex: 1, justifyContent: 'flex-start'}}>
-                            <Select
-                                width={250}
-                                ref="SELECT1"
-                                optionListRef={this._getOptionList.bind(this)}
-                                defaultValue="Chọn mệnh giá ..."
-                                onSelect={this._canada.bind(this)}
-                                styleOption={{alignSelf:'flex-start', marginTop: 4, backgroundColor : 'rgb(43, 49, 53)', marginLeft: 15}} 
-                                styleText={{color:'white'}}
-                                optionListProps= {{leftOffset:15}}
+                                    optionListProps={{leftOffset: 40, topOffset: 20, extraWidth :-50}}
                                 >
-                      
-                                <Option styleText={{color:'white'}}>Alberta</Option>
-                                <Option styleText={{color:'white'}}>British Columbia</Option>
-                                <Option styleText={{color:'white'}}>Manitoba</Option>
-                                <Option styleText={{color:'white'}}>New Brunswick</Option>
-                            </Select>
-                            <OptionList ref="OPTIONLIST" />
-                        </View>
 
-                        <Button
-                            title="login screen"
-                            onPress={() => {
-                                this.showAlert();
-                            }}
-                        />
+                                    <Option styleText={{ color: 'white' }}>Alberta</Option>
+                                    <Option styleText={{ color: 'white' }}>British Columbia</Option>
+                                    <Option styleText={{ color: 'white' }}>Manitoba</Option>
+                                    <Option styleText={{ color: 'white' }}>New Brunswick</Option>
+                                </Select>
+                                <OptionList ref="OPTIONLIST" backgroundColor={DROPDOWN_MENU_COLOR} />
+                            </View>
+                            <Text style={{ zIndex: 0, alignSelf : 'center'}}> abalasdjklasdj  asldkjasldkj </Text>
+                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
+                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
+                            <Button
+                                title="login screen"
+                                onPress={() => {
+                                    this.showAlert();
+                                }}
+                                style={{ zIndex: 0 }}
+                            />
 
-                        <AwesomeAlert
-                            show={showAlert}
-                            showProgress={false}
-                            title="Thông báo"
-                            titleStyle={{ color: 'rgb(247,165,117)' }}
-                            message="Bạn muốn dùng 140.000 xu để đổi thể Viettel 10k ?"
-                            closeOnTouchOutside={true}
-                            closeOnHardwareBackPress={false}
-                            showCancelButton={true}
-                            showConfirmButton={true}
+                            <AwesomeAlert
+                                show={showAlert}
+                                showProgress={false}
+                                title="Thông báo"
+                                titleStyle={{ color: 'rgb(247,165,117)' }}
+                                message="Bạn muốn dùng 140.000 xu để đổi thể Viettel 10k ?"
+                                closeOnTouchOutside={true}
+                                closeOnHardwareBackPress={false}
+                                showCancelButton={true}
+                                showConfirmButton={true}
 
 
-                            confirmButtonImgSrc={require('../assets/btn_confirm.png')}
-                            cancelButtonImgSrc={require('../assets/btn_cancel.png')}
-                            onCancelPressed={() => {
-                                this.hideAlert();
-                            }}
-                            onConfirmPressed={() => {
-                                this.hideAlert();
-                            }}
-                        />
-
-                    </ImageBackground>
+                                confirmButtonImgSrc={require('../assets/btn_confirm.png')}
+                                cancelButtonImgSrc={require('../assets/btn_cancel.png')}
+                                onCancelPressed={() => {
+                                    this.hideAlert();
+                                }}
+                                onConfirmPressed={() => {
+                                    this.hideAlert();
+                                }}
+                            />
+                         </ImageBackground>
+                        
+                    </View>
                 </View>
             </ImageBackground>
         )
@@ -125,7 +137,14 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
         width: '100%',
-        height: '80%',
+        height: '100%',
+    },
+
+    container2: {
+        flex: 1,
+        width: '95%',
+        // alignItems: 'center',
+        // backgroundColor: 'black'
     },
 
     background: {

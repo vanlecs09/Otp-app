@@ -117,22 +117,17 @@ export default class Select extends Component {
   }
 
   render() {
-    const { width, height, children, defaultValue, style, styleOption, styleText, placeholder } = this.props;
+    const { imageWidth, imageHeight, width, height, children, defaultValue, style, styleOption, styleText, placeholder } = this.props;
     const dimensions = { width, height };
 
     return (
       <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
+      
         <ImageBackground ref={SELECT} source={require('./res/img_input.png')}
-          style={{ width: 313, height: 49 }}>
+          style={{ width: width, height: height }} resizeMode= 'contain'>
 
           <Option style={styleOption} styleText={styleText} >{this.state.value || placeholder}</Option>
         </ImageBackground>
-        {/* <View ref={SELECT} style={[styles.container, style, dimensions, { height: '10%' }]}>
-
-          <Option style={styleOption} styleText={styleText} >{this.state.value || placeholder}</Option>
-
-        </View> */}
-
       </TouchableWithoutFeedback>
     );
   }
