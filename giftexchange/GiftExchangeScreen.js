@@ -5,8 +5,69 @@ import AwesomeAlert from '../popup';
 import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
 import ButtonHighLight from '../components/ButtonHighLight';
+import ButtonImage from '../components/ButtonImage';
 import * as Utils from '../Utils';
 import { connect } from 'react-redux';
+import * as AppActions from '../actions';
+
+const arrVietelImage = [
+    require('../assets/btn_vietel.png'),
+    require('../assets/btn_vietel.png'),
+    require('../assets/btn_vietel.png'),
+    require('../assets/btn_vietel.png'),
+    require('../assets/btn_vietel.png'),
+    require('../assets/btn_vietel.png'),
+]
+
+const arrVietelImageSelect = [
+    require('../assets/btn_vietel_select.png'),
+    require('../assets/btn_vietel_select.png'),
+    require('../assets/btn_vietel_select.png'),
+    require('../assets/btn_vietel_select.png'),
+    require('../assets/btn_vietel_select.png'),
+    require('../assets/btn_vietel_select.png'),
+]
+
+
+const arrMobiImage = [
+    require('../assets/btn_mobi.png'),
+    require('../assets/btn_mobi.png'),
+    require('../assets/btn_mobi.png'),
+    require('../assets/btn_mobi.png'),
+    require('../assets/btn_mobi.png'),
+    require('../assets/btn_mobi.png'),
+]
+
+const arrMobiImageSelect = [
+    require('../assets/btn_mobi_select.png'),
+    require('../assets/btn_mobi_select.png'),
+    require('../assets/btn_mobi_select.png'),
+    require('../assets/btn_mobi_select.png'),
+    require('../assets/btn_mobi_select.png'),
+    require('../assets/btn_mobi_select.png'),
+]
+
+const arrNivaImage = [
+    require('../assets/btn_vina.png'),
+    require('../assets/btn_vina.png'),
+    require('../assets/btn_vina.png'),
+    require('../assets/btn_vina.png'),
+    require('../assets/btn_vina.png'),
+    require('../assets/btn_vina.png'),
+]
+
+const arrNivaImageSelect = [
+    require('../assets/btn_vina_select.png'),
+    require('../assets/btn_vina_select.png'),
+    require('../assets/btn_vina_select.png'),
+    require('../assets/btn_vina_select.png'),
+    require('../assets/btn_vina_select.png'),
+    require('../assets/btn_vina_select.png'),
+]
+
+const arrImageall = {
+    image: require('../assets/btn_vietel.png'),
+}
 
 class GiftExchangeScreen extends React.Component {
     constructor(props) {
@@ -46,15 +107,21 @@ class GiftExchangeScreen extends React.Component {
     render() {
         const { showAlert } = this.state;
         var myData = [1, 2, 3, 4, 5, 6]
-        const { cardIndex } = this.props;
+        const { cardIndex, cardValueIndex } = this.props;
+        var arrImage = [];
+        var arrImageSelect = [];
         if (cardIndex == 1) {
-
+            arrImage = arrVietelImage;
+            arrImageSelect = arrVietelImageSelect;
         } else if (cardIndex == 2) {
-
+            arrImage = arrMobiImage;
+            arrImageSelect = arrMobiImageSelect;
         } else if (cardIndex == 3) {
-
+            arrImage = arrNivaImage;
+            arrImageSelect = arrNivaImageSelect;
         } else {
-
+            arrImage = arrVietelImage;
+            arrImageSelect = arrVietelImageSelect;
         }
         console.log(Utils.screenScale);
         return (
@@ -78,13 +145,23 @@ class GiftExchangeScreen extends React.Component {
                                     numColumns={3}
                                     key={1}
                                     scrollEnabled={false}
-                                    renderItem={(movieItem) =>
-                                        <View style={{ flexDirection: 'column', flex: 1, margin: 5 }}>
-                                            <Image source={require('../assets/btn_vietel.png')}
-                                                style={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, justifyContent: 'center', alignItems: 'center' }}></Image>
-                                        </View>
-                                    }
-                                >
+                                    renderItem={(movieItem) => {
+                                        const { item, index } = movieItem;
+                                        return (
+                                            // <View style={{ flexDirection: 'column', flex: 1, margin: 5 }}>
+                                            //     <Image source={arrImage[index]}
+                                            //         style={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, justifyContent: 'center', alignItems: 'center' }}></Image>
+                                            // </View>
+                                            <ButtonImage
+                                                customStyle={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale }}
+                                                // text="QUAY LẠI"
+                                                onPress={() => this.props.selectCardValue(index)}
+                                                imageSource={arrImage[index]}
+                                                imageSelectSource={arrImageSelect[index]}
+                                                isButtonPressed={cardValueIndex == index}
+                                            />
+                                        )
+                                    }}>
 
                                 </FlatList>
                             </View>
@@ -158,9 +235,17 @@ var styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        cardIndex: state.deposit.cardIndex
+        cardIndex: state.deposit.cardIndex,
+        cardValueIndex: state.deposit.cardValueIndex,
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        selectCardValue: (cardValueIndex) => {
+            dispatch(AppActions.selectCardValue(cardValueIndex));
+        }
+    }
+}
 
-export default connect(mapStateToProps)(GiftExchangeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(GiftExchangeScreen);

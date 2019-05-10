@@ -27,7 +27,7 @@ class ButtonImage extends Component {
 }
 
 ButtonImage.propTypes = {
-	text: PropTypes.string.isRequired,
+	// text: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired,
 };
 
