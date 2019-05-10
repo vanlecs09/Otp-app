@@ -3,6 +3,8 @@ import { Text } from 'react-native'
 import { createAppContainer, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from './login/LoginScreen'
 import DepositScreen from './deposit/DepositScreen';
+import GiftExchangeScreen from './giftexchange/GiftExchangeScreen';
+
 import SideBar from './sidebar/SideBar';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -16,6 +18,7 @@ const store = createStore(rootReducer,
 const MyDrawerNavigator = createDrawerNavigator({
   LoginScreen: { screen: LoginScreen },
   DepositScreen: { screen: DepositScreen },
+  GiftExchangeScreen: {screen: GiftExchangeScreen},
 },
   {
     contentComponent: props => <SideBar {...props} />

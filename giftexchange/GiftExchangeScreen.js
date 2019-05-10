@@ -1,26 +1,20 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, FlatList, Image, Dimensions } from 'react-native';
 import AnimatedLoader from 'react-native-animated-loader';
 import AwesomeAlert from '../popup';
 import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
-import DropDown from '../dropdownMenu';
-import EditBox from '../components/EditBox';
+import ButtonHighLight from '../components/ButtonHighLight';
+import * as Utils from '../Utils';
+import { connect } from 'react-redux';
 
-const {
-    Select,
-    Option,
-    OptionList,
-    updatePosition
-} = DropDown;
-
-const DROPDOWN_MENU_COLOR = 'rgb(43, 49, 53)'
-
-export default class DepositScreen extends React.Component {
+class GiftExchangeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { showPopUp: false };
-        this.titleName = "Nạp thẻ";
+        this.titleName = "Đổi quà";
+
+        console.log(Dimensions.get('window'));
     }
 
 
@@ -51,6 +45,18 @@ export default class DepositScreen extends React.Component {
 
     render() {
         const { showAlert } = this.state;
+        var myData = [1, 2, 3, 4, 5, 6]
+        const { cardIndex } = this.props;
+        if (cardIndex == 1) {
+
+        } else if (cardIndex == 2) {
+
+        } else if (cardIndex == 3) {
+
+        } else {
+
+        }
+        console.log(Utils.screenScale);
         return (
             <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
@@ -63,42 +69,34 @@ export default class DepositScreen extends React.Component {
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
                         <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
-                       
-                            <CardTypeSelectionView></CardTypeSelectionView>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10, zIndex: 1 }}>
-                                <Select
-                                    width={250}
-                                    ref="SELECT1"
-                                    height={60}
-                                    optionListRef={this._getOptionList.bind(this)}
-                                    defaultValue="Chọn mệnh giá ..."
-                                    onSelect={this._canada.bind(this)}
-                                    styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height : 20 }}
-                                    styleText={{ color: 'white' }}
-                                    style={{ alignItems: 'center'}}
 
-                                    optionListProps={{leftOffset: 40, topOffset: 20, extraWidth :-50}}
+                            <CardTypeSelectionView></CardTypeSelectionView>
+                            <Text style={{ alignSelf: 'center', marginTop: 60 }}>Chon Menh Gia</Text>
+                            <View style={{ justifyContent: 'center', marginTop: 10 }}>
+                                <FlatList data={myData}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    numColumns={3}
+                                    key={1}
+                                    scrollEnabled={false}
+                                    renderItem={(movieItem) =>
+                                        <View style={{ flexDirection: 'column', flex: 1, margin: 5 }}>
+                                            <Image source={require('../assets/btn_vietel.png')}
+                                                style={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, justifyContent: 'center', alignItems: 'center' }}></Image>
+                                        </View>
+                                    }
                                 >
 
-                                    <Option styleText={{ color: 'white' }}>Alberta</Option>
-                                    <Option styleText={{ color: 'white' }}>British Columbia</Option>
-                                    <Option styleText={{ color: 'white' }}>Manitoba</Option>
-                                    <Option styleText={{ color: 'white' }}>New Brunswick</Option>
-                                </Select>
-                                <OptionList ref="OPTIONLIST" backgroundColor={DROPDOWN_MENU_COLOR} />
+                                </FlatList>
                             </View>
-                            <Text style={{ zIndex: 0, alignSelf : 'center'}}> ooo ,,, ooo {"\n"} 999999 </Text>
-                            <Text style={{ zIndex: 0, alignSelf : 'center'}}> Nạp thẻ </Text>
-                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
-                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
-                            <Button
-                                title="login screen"
+
+                            <ButtonHighLight style={{ marginBottom: 0 }}
+                                sizeStyle={{ height: 61, width: '50%' }}
+                                text="ĐỔI QUÀ"
                                 onPress={() => {
                                     this.showAlert();
                                 }}
-                                style={{ zIndex: 0 }}
+                                imageSource={require('../assets/img_btn_1.png')}
                             />
-
                             <AwesomeAlert
                                 show={showAlert}
                                 showProgress={false}
@@ -120,8 +118,8 @@ export default class DepositScreen extends React.Component {
                                     this.hideAlert();
                                 }}
                             />
-                         </ImageBackground>
-                        
+                        </ImageBackground>
+
                     </View>
                 </View>
             </ImageBackground>
@@ -144,7 +142,8 @@ var styles = StyleSheet.create({
     container2: {
         flex: 1,
         width: '95%',
-        // alignItems: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
         // backgroundColor: 'black'
     },
 
@@ -156,3 +155,12 @@ var styles = StyleSheet.create({
 
 
 });
+
+const mapStateToProps = state => {
+    return {
+        cardIndex: state.deposit.cardIndex
+    }
+}
+
+
+export default connect(mapStateToProps)(GiftExchangeScreen);

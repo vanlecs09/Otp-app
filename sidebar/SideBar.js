@@ -18,7 +18,7 @@ import icon_mail_notify from './res/img_sidebar_icon_mail_notify.png';
 
 const routes = [
     {
-        title: "LoginScreen",
+        title: "DepositScreen",
         name: "Nạp thẻ",
         icon: icon_deposit_normal,
         iconSelect: icon_deposit_select

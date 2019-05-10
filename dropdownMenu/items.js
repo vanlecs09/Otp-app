@@ -40,7 +40,7 @@ export default class Items extends Component {
     return (
       <View style={[styles.container, { top: positionY, left: positionX }, {backgroundColor}]}>
         <ScrollViewComp
-          style={{ width: width - 2, height: autoHeightItemsList && items.length < 3 ? 'auto' : height * 3 }}
+          style={{ width: width - 2, height: autoHeightItemsList && items.length < 3 ? 'auto' : height * 1.5 }}
           automaticallyAdjustContentInsets={false}
           bounces={false}>
           {renderedItems}

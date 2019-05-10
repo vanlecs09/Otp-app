@@ -12,8 +12,7 @@ class ButtonImage extends Component {
       }
 
 	render() {
-		const { text, onPress, imageSource, imageSelectSource, customStyle, isButtonPressed } = this.props;
-        console.log("is button pressed " + isButtonPressed);
+		const {onPress, imageSource, imageSelectSource, customStyle, isButtonPressed } = this.props;
         const imgSrc = isButtonPressed ? imageSelectSource : imageSource;
 		return (
 			<TouchableOpacity  style={customStyle}
@@ -21,7 +20,7 @@ class ButtonImage extends Component {
                     onPress();
                 }}
 			>
-				<Image style={styles.image} source={imgSrc}/>
+				<Image style={[styles.image, customStyle]} source={imgSrc}/>
 			</TouchableOpacity >
 		);
 	}

@@ -41,7 +41,7 @@ class LoginScreen extends React.Component {
                 (*) Phí khi nhận mã OTP SMS la 1000 xu{"\n"}
               </Text>
               <ButtonHighLight style={{ marginBottom: 0 }}
-                sizeStyle={{ height: 61, width: 209 }}
+                sizeStyle={{ height: 61, width: '50%' }}
                 text="ĐĂNG NHẬP"
                 onPress={() => this.props.login({})}
                 imageSource={require('../assets/img_btn_1.png')}
