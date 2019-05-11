@@ -28,9 +28,39 @@ class HistoryScreen extends Component {
         });
     };
 
+    showDespoitHistory = () => {
+        this.setState({
+            showHistory: true,
+        })
+    };
+    
+    showExchangeHistory = () => {
+        this.setState({
+            showHistory: false,
+        })
+    }
+
+
+    showExchangeHistoryView = () => {
+        return ( 
+            <View>
+                <Text>this is exchange history view</Text>
+            </View>
+        )
+    }
+
+    showDepositHistoryView = () => {
+        return (
+            <View>
+                <Text>this is depost histosry view</Text>
+            </View>
+        )
+    }
+
     render() {
         const myData = [1, 2, 3, 4, 5];
-        const { showAlert } = this.state;
+        const { showAlert, showHistory } = this.state;
+        const historyview = showHistory == true ?  this.showDepositHistoryView() : this.showExchangeHistoryView();
         return (
             <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
@@ -42,13 +72,13 @@ class HistoryScreen extends Component {
                 <View style={styles.container}>
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
-                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%', justifyContent: 'center' }} resizeMode='cover'>
+                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
-                            <View style={{ justifyContent: 'center', marginTop: 10, backgroundColor: 'red', flexDirection :'row' }}>
+                            <View style={{ justifyContent: 'center', marginTop: 70, backgroundColor: 'red', flexDirection :'row' }}>
                                 <ButtonImage
                                     customStyle={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, marginLeft: 5 }}
                                     text="ĐĂNG NHẬP"
-                                    onPress={() => { this.props.selectCard(1) }}
+                                    onPress={() => { this.showDespoitHistory() }}
                                     imageSource={require('../assets/btn_vietel.png')}
                                     imageSelectSource={require('../assets/btn_vietel_select.png')}
                                     isButtonPressed={0 == 1}
@@ -57,12 +87,13 @@ class HistoryScreen extends Component {
                                 <ButtonImage
                                     customStyle={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, marginLeft: 5 }}
                                     text="ĐĂNG NHẬP"
-                                    onPress={() => { this.props.selectCard(1) }}
+                                    onPress={() => { this.showExchangeHistory() }}
                                     imageSource={require('../assets/btn_vietel.png')}
                                     imageSelectSource={require('../assets/btn_vietel_select.png')}
                                     isButtonPressed={0 == 1}
                                 />
                             </View>
+                            {historyview}
 
                         </ImageBackground>
                     </View>
@@ -80,6 +111,7 @@ var styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
+        // backgroundColor: 'black'
     },
 
     container2: {
@@ -87,7 +119,7 @@ var styles = StyleSheet.create({
         width: '95%',
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: 'black'
+        backgroundColor: 'black'
     },
 
     background: {
