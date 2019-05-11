@@ -27,22 +27,13 @@ class ButtonImage extends Component {
 }
 
 ButtonImage.propTypes = {
-	// text: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
-	view: {
-		position: 'absolute',
-		backgroundColor: 'transparent',
-		alignSelf: 'center',
-		alignItems: 'center',
-		justifyContent: 'center',
-		// height: 61
-	},
 	textStyle: {
 		fontSize: 20,
-		color: '#ffffff',
+		// color: '#ffffff',
 		textAlign: 'center',
 	},
 

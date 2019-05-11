@@ -6,6 +6,7 @@ import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
 import DropDown from '../dropdownMenu';
 import EditBox from '../components/EditBox';
+import * as Utils from '../Utils';
 
 const {
     Select,
@@ -63,7 +64,7 @@ export default class DepositScreen extends React.Component {
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
                         <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
-                       
+
                             <CardTypeSelectionView></CardTypeSelectionView>
                             <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10, zIndex: 1 }}>
                                 <Select
@@ -73,11 +74,11 @@ export default class DepositScreen extends React.Component {
                                     optionListRef={this._getOptionList.bind(this)}
                                     defaultValue="Chọn mệnh giá ..."
                                     onSelect={this._canada.bind(this)}
-                                    styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height : 20 }}
+                                    styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height: 20 }}
                                     styleText={{ color: 'white' }}
-                                    style={{ alignItems: 'center'}}
+                                    style={{ alignItems: 'center' }}
 
-                                    optionListProps={{leftOffset: 40, topOffset: 20, extraWidth :-50}}
+                                    optionListProps={{ leftOffset: 40, topOffset: 20, extraWidth: -50 }}
                                 >
 
                                     <Option styleText={{ color: 'white' }}>Alberta</Option>
@@ -87,10 +88,14 @@ export default class DepositScreen extends React.Component {
                                 </Select>
                                 <OptionList ref="OPTIONLIST" backgroundColor={DROPDOWN_MENU_COLOR} />
                             </View>
-                            <Text style={{ zIndex: 0, alignSelf : 'center'}}> ooo ,,, ooo {"\n"} 999999 </Text>
-                            <Text style={{ zIndex: 0, alignSelf : 'center'}}> Nạp thẻ </Text>
-                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
-                            <EditBox placeholder="Nhập số điện thoại của bạn"></EditBox>
+                            <Text style={{ zIndex: 0, alignSelf: 'center' }}> ooo ,,, ooo {"\n"} 999999 </Text>
+                            <Text style={{ zIndex: 0, alignSelf: 'center' }}> Nạp thẻ </Text>
+                            <EditBox placeholder="Nhập số điện thoại của bạn"
+                                style={{ width: Utils.screenWidth * 0.7, height: 40, marginTop: 10 }}>
+                            </EditBox>
+                            <EditBox placeholder="Nhập số điện thoại của bạn"
+                                style={{ width: Utils.screenWidth * 0.7, height: 40, marginTop: 10 }}
+                            ></EditBox>
                             <Button
                                 title="login screen"
                                 onPress={() => {
@@ -120,8 +125,8 @@ export default class DepositScreen extends React.Component {
                                     this.hideAlert();
                                 }}
                             />
-                         </ImageBackground>
-                        
+                        </ImageBackground>
+
                     </View>
                 </View>
             </ImageBackground>

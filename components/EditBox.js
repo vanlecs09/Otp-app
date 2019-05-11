@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TextInput, ImageBackground, Image, StyleSheet, Text, View, Button } from 'react-native';
-// import 
 
 class EditBox extends Component {
     constructor(props) {
@@ -8,15 +7,15 @@ class EditBox extends Component {
         this.state = {}
     }
     render() {
-        const {placeholder} = this.props;
+        const { placeholder, style } = this.props;
         return (
-            <View style={styles.SectionStyle}>
+            <View style={[styles.SectionStyle, style]}>
                 <ImageBackground
                     source={require('../assets/img_input.png')}
-                    style={styles.ImageStyle}
-                    resizeMode= 'contain'>
+                    style={[styles.ImageStyle, {width: style.width, height: style.height}]}
+                    resizeMode='contain'>
                     <TextInput
-                        style={{ flex: 1, marginLeft: 40, fontFamily: 'Montserrat_small' }}
+                        style={{ flex: 1, marginLeft: 40, fontFamily: 'Montserrat_small', fontSize: 10 }}
                         placeholder={placeholder}
                         underlineColorAndroid="transparent"
                     />
@@ -33,15 +32,12 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff0',
-        height: 50,
-        width: '80%',
+        backgroundColor: 'black',
         alignSelf: 'center',
     },
 
     ImageStyle: {
-        height: null,
-        width: null,
+
     },
 })
 

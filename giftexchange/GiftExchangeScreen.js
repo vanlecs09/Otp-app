@@ -123,7 +123,6 @@ class GiftExchangeScreen extends React.Component {
             arrImage = arrVietelImage;
             arrImageSelect = arrVietelImageSelect;
         }
-        console.log(Utils.screenScale);
         return (
             <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
@@ -148,10 +147,6 @@ class GiftExchangeScreen extends React.Component {
                                     renderItem={(movieItem) => {
                                         const { item, index } = movieItem;
                                         return (
-                                            // <View style={{ flexDirection: 'column', flex: 1, margin: 5 }}>
-                                            //     <Image source={arrImage[index]}
-                                            //         style={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale, justifyContent: 'center', alignItems: 'center' }}></Image>
-                                            // </View>
                                             <ButtonImage
                                                 customStyle={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale }}
                                                 // text="QUAY LẠI"
@@ -167,7 +162,8 @@ class GiftExchangeScreen extends React.Component {
                             </View>
 
                             <ButtonHighLight style={{ marginBottom: 0 }}
-                                sizeStyle={{ height: 61, width: '50%' }}
+                                customStyle={{ height: 61, width: 200, alignSelf: 'center' }}
+                                textStyle={{ fontSize: 20, color: 'white', textAlign: 'center', }}
                                 text="ĐỔI QUÀ"
                                 onPress={() => {
                                     this.showAlert();

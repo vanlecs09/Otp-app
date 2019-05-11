@@ -4,6 +4,7 @@ import { createAppContainer, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from './login/LoginScreen'
 import DepositScreen from './deposit/DepositScreen';
 import GiftExchangeScreen from './giftexchange/GiftExchangeScreen';
+import MailScreen from './mail/MailScreen';
 
 import SideBar from './sidebar/SideBar';
 
@@ -19,6 +20,7 @@ const MyDrawerNavigator = createDrawerNavigator({
   LoginScreen: { screen: LoginScreen },
   DepositScreen: { screen: DepositScreen },
   GiftExchangeScreen: {screen: GiftExchangeScreen},
+  MailScreen : {screen: MailScreen}
 },
   {
     contentComponent: props => <SideBar {...props} />

@@ -4,16 +4,16 @@ import { TouchableOpacity, Text, StyleSheet, ImageBackground, View, Image } from
 
 class ButtonHighLight extends Component {
 	render() {
-		const { text, onPress, imageSource, sizeStyle, customStyle } = this.props;
+		const { text, onPress, imageSource, customStyle , textStyle} = this.props;
 		const { view} = styles;
-		const viewCombineStyle = StyleSheet.flatten([view, sizeStyle, customStyle]);
+		const viewCombineStyle = StyleSheet.flatten([view, customStyle]);
 		return (
-			<TouchableOpacity style={styles.buttonStyle}
+			<TouchableOpacity style={customStyle}
 				onPress={() => onPress()}
 			>
-				<Image style={styles.image} source={imageSource}/>
+				<Image style={[styles.image, customStyle]} source={imageSource}/>
 				<View style={viewCombineStyle}>
-					<Text style={styles.textStyle}>{text}</Text>
+					<Text style={textStyle}>{text}</Text>
 				</View>
 
 			</TouchableOpacity>
@@ -33,13 +33,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		alignItems: 'center',
 		justifyContent: 'center',
-		// height: 61
 	},
-	textStyle: {
-		fontSize: 20,
-		color: '#ffffff',
-		textAlign: 'center',
-	},
+	// textStyle: {
+	// 	fontSize: 20,
+	// 	color: '#ffffff',
+	// 	textAlign: 'center',
+	// },
 
 	image: {
 		alignSelf: 'center'
