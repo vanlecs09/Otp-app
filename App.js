@@ -5,6 +5,7 @@ import LoginScreen from './login/LoginScreen'
 import DepositScreen from './deposit/DepositScreen';
 import GiftExchangeScreen from './giftexchange/GiftExchangeScreen';
 import MailScreen from './mail/MailScreen';
+import HistoryScreen from './history/HistoryScreen';
 
 import SideBar from './sidebar/SideBar';
 
@@ -20,7 +21,8 @@ const MyDrawerNavigator = createDrawerNavigator({
   LoginScreen: { screen: LoginScreen },
   DepositScreen: { screen: DepositScreen },
   GiftExchangeScreen: {screen: GiftExchangeScreen},
-  MailScreen : {screen: MailScreen}
+  MailScreen : {screen: MailScreen},
+  HistoryScreen: {screen:HistoryScreen}
 },
   {
     contentComponent: props => <SideBar {...props} />
