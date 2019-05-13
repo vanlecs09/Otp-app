@@ -8,11 +8,15 @@ import EditBox from '../components/EditBox';
 import * as Utils from '../Utils';
 import * as AppActions from '../actions';
 
+var { vw, vh, vmin, vmax } = require('react-native-viewport-units');
+
 
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.titleName = "OTP";
+    console.log(Utils.screenWidth);
+    console.log(vw + " " + vh + " " + vmin + " " + vmax);
   }
 
   render() {
@@ -28,36 +32,43 @@ class LoginScreen extends React.Component {
           <HeaderView titleName={this.titleName}></HeaderView>
           <View style={styles.container2}>
             <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
-              <Text style={{ marginTop: 55, fontFamily: 'Montserrat_medium', alignSelf: 'center', fontSize: 15 }}>
-                CÁC BƯỚC ĐĂNG NHẬP APP OTP{"\n"}
-              </Text>
-              <Text style={{ fontFamily: 'Montserrat_small', marginLeft: 30, marginRight: 30, fontSize: 12 }}>
-                1. Dăng nhập bằng số điện thoại đã đăng ký{"\n"}
-                2. Một mã OTP sẽ được gửi đến số điện thoại đó{"\n"}
-                3. Dùng mã OTP đó để truy nhập vào App{"\n"}
-              </Text >
-              <EditBox placeholder="Nhập số điện thoại của bạn"
-                style={{ width: Utils.screenWidth * 0.7, height: 40, marginTop: 10 }}
-              ></EditBox>
-              <Text style={{ marginTop: 20, fontFamily: 'Montserrat_small', marginLeft: 30, marginRight: 30, fontSize: 12 }}>
-                Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
-                (*) Phí khi nhận mã OTP SMS la 1000 xu{"\n"}
-              </Text>
-              <ButtonHighLight style={{ marginBottom: 0 }}
-                customStyle={{ height: 61, width: 200, alignSelf: 'center' }}
-                textStyle={{ fontSize: 20, color: 'white', textAlign: 'center', }}
-                text="ĐĂNG NHẬP"
-                onPress={() => this.props.login({})}
-                imageSource={require('../assets/img_btn_1.png')}
-              />
+              <View style={{ flex: 2, flexDirection: 'column' }}>
 
-              <ButtonHighLight style={{ marginBottom: 0 }}
-                customStyle={{ height: 61, width: 200, alignSelf: 'center' }}
-                textStyle={{ fontSize: 20, color: 'white', textAlign: 'center', }}
-                text="QUAY LAI"
-                onPress={() => this.props.login({})}
-                imageSource={require('../assets/img_btn_2.png')}
-              />
+
+
+              </View>
+              <View style={{ flex: 15, flexDirection: 'column' }}>
+                <Text style={{ marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18) }}>
+                  CÁC BƯỚC ĐĂNG NHẬP APP OTP{"\n"}
+                </Text>
+                <Text style={styles.text}>
+                  1. Dăng nhập bằng số điện thoại đã đăng ký{"\n"}
+                  2. Một mã OTP sẽ được gửi đến số điện thoại đó{"\n"}
+                  3. Dùng mã OTP đó để truy nhập vào App{"\n"}
+                </Text >
+                <EditBox placeholder="Nhập số điện thoại của bạn"
+                  style={{ height : Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
+                ></EditBox>
+                <Text style={styles.text}>
+                  Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
+                  (*) Phí khi nhận mã OTP SMS la 1000 xu{"\n"}
+                </Text>
+                <ButtonHighLight style={{ marginBottom: 0 }}
+                  customStyle={styles.buttonHighLight}
+                  textStyle={styles.buttonFont}
+                  text="ĐĂNG NHẬP"
+                  onPress={() => this.props.login({})}
+                  imageSource={require('../assets/img_btn_1.png')}
+                />
+
+                <ButtonHighLight style={{ marginBottom: 0 }}
+                  customStyle={styles.buttonHighLight}
+                  textStyle={styles.buttonFont}
+                  text="QUAY LAI"
+                  onPress={() => this.props.login({})}
+                  imageSource={require('../assets/img_btn_2.png')}
+                />
+              </View>
             </ImageBackground>
           </View>
         </View>
@@ -82,12 +93,18 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     // height: null,
     // justifyContent: 'flex-start',
-    // backgroundColor: 'black'
+    backgroundColor: 'black'
   },
 
   text: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    marginTop: 10, fontFamily: 'Montserrat_medium', marginLeft: 20, marginRight: 20, fontSize: Utils.moderateScale(12)
+  },
+  buttonHighLight: {
+    height:  Utils.moderateScale(61),  width: Utils.moderateScale(200), alignSelf: 'center' 
+  },
+
+  buttonFont: {
+    fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center',
   },
 
   iconBtn: {
