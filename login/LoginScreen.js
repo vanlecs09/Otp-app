@@ -47,7 +47,8 @@ class LoginScreen extends React.Component {
                   3. Dùng mã OTP đó để truy nhập vào App{"\n"}
                 </Text >
                 <EditBox placeholder="Nhập số điện thoại của bạn"
-                  style={{ height : Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
+                  style={{ height: Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
+                  textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}
                 ></EditBox>
                 <Text style={styles.text}>
                   Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
@@ -100,7 +101,7 @@ var styles = StyleSheet.create({
     marginTop: 10, fontFamily: 'Montserrat_medium', marginLeft: 20, marginRight: 20, fontSize: Utils.moderateScale(12)
   },
   buttonHighLight: {
-    height:  Utils.moderateScale(61),  width: Utils.moderateScale(200), alignSelf: 'center' 
+    height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center'
   },
 
   buttonFont: {

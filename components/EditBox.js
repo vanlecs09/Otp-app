@@ -7,7 +7,7 @@ class EditBox extends Component {
         this.state = {}
     }
     render() {
-        const { placeholder, style } = this.props;
+        const { placeholder, style, textStyle } = this.props;
         return (
             <View style={[styles.SectionStyle, style]}>
                 <ImageBackground
@@ -15,7 +15,7 @@ class EditBox extends Component {
                     style={[styles.ImageStyle, {width: style.width, height: style.height}]}
                     resizeMode='contain'>
                     <TextInput
-                        style={{ flex: 1, marginLeft: 40, fontFamily: 'Montserrat_small', fontSize: 10 }}
+                        style={textStyle}
                         placeholder={placeholder}
                         underlineColorAndroid="transparent"
                     />

@@ -76,6 +76,7 @@ class GiftExchangeScreen extends React.Component {
         this.titleName = "Đổi quà";
 
         console.log(Dimensions.get('window'));
+        console.log(Utils.screenScale);
     }
 
 
@@ -140,6 +141,7 @@ class GiftExchangeScreen extends React.Component {
                             <Text style={{ alignSelf: 'center', marginTop: 60 }}>Chon Menh Gia</Text>
                             <View style={{ justifyContent: 'center', marginTop: 10 }}>
                                 <FlatList data={myData}
+                                    contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
                                     keyExtractor={(item, index) => index.toString()}
                                     numColumns={3}
                                     key={1}
@@ -147,8 +149,11 @@ class GiftExchangeScreen extends React.Component {
                                     renderItem={(movieItem) => {
                                         const { item, index } = movieItem;
                                         return (
+                                            // <View style = {{height: Utils.moderateScale(70), width: Utils.moderateScale(96),margin : 5, width: Utils.moderateScale(96), backgroundColor : "blue"}}>
+
+                                            // </View>
                                             <ButtonImage
-                                                customStyle={{ height: 140 / Utils.screenScale, width: 192 / Utils.screenScale }}
+                                                customStyle={{ alignSelf: 'center',height: Utils.moderateScale(70), margin : 5,width: Utils.moderateScale(96), width: Utils.moderateScale(96) }}
                                                 // text="QUAY LẠI"
                                                 onPress={() => this.props.selectCardValue(index)}
                                                 imageSource={arrImage[index]}
@@ -162,8 +167,8 @@ class GiftExchangeScreen extends React.Component {
                             </View>
 
                             <ButtonHighLight style={{ marginBottom: 0 }}
-                                customStyle={{ height: 61, width: 200, alignSelf: 'center' }}
-                                textStyle={{ fontSize: 20, color: 'white', textAlign: 'center', }}
+                                customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center' }}
+                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', }}
                                 text="ĐỔI QUÀ"
                                 onPress={() => {
                                     this.showAlert();

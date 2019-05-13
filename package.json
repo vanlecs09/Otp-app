@@ -16,6 +16,7 @@
     "react-native-animated-loader": "0.0.7",
     "react-native-elements": "^1.1.0",
     "react-native-loading-spinner-overlay": "^1.0.1",
+    "react-native-viewport-units": "0.0.5",
     "react-navigation": "^3.8.1",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",

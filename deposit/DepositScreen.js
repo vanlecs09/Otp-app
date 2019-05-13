@@ -66,7 +66,10 @@ export default class DepositScreen extends React.Component {
                         <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10, zIndex: 1 }}>
+                            <Text style={{ height : Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18), backgroundColor: 'blue' }}>
+                                CHỌN MỆNH GIÁ{"\n"}
+                            </Text>
+                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 1 }}>
                                 <Select
                                     width={250}
                                     ref="SELECT1"
@@ -91,10 +94,12 @@ export default class DepositScreen extends React.Component {
                             <Text style={{ zIndex: 0, alignSelf: 'center' }}> ooo ,,, ooo {"\n"} 999999 </Text>
                             <Text style={{ zIndex: 0, alignSelf: 'center' }}> Nạp thẻ </Text>
                             <EditBox placeholder="Nhập số điện thoại của bạn"
-                                style={{ width: Utils.screenWidth * 0.7, height: 40, marginTop: 10 }}>
+                                style={{ height: Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
+                                textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}>
                             </EditBox>
                             <EditBox placeholder="Nhập số điện thoại của bạn"
-                                style={{ width: Utils.screenWidth * 0.7, height: 40, marginTop: 10 }}
+                                style={{ height: Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
+                                textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}
                             ></EditBox>
                             <Button
                                 title="login screen"
