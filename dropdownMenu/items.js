@@ -1,5 +1,5 @@
 import React, { Component, } from 'react';
-import { Dimensions, StyleSheet, View, ScrollView, TouchableWithoutFeedback, Text } from 'react-native'
+import { Dimensions, StyleSheet, View, ScrollView, TouchableHighlight, TouchableWithoutFeedback, Text } from 'react-native'
 import PropTypes from 'prop-types'
 
 const window = Dimensions.get('window');
@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
   },
   container: {
     position: 'absolute',
-    borderWidth: 2 / window.scale,
+    // borderWidth: 2 / window.scale,
+    // flex: 1,
     borderTopColor: 'transparent',
   }
 })
@@ -26,11 +27,20 @@ export default class Items extends Component {
     console.log(backgroundColor);
     const renderedItems = React.Children.map(items, (item) => {
       return (
-        <TouchableWithoutFeedback onPress={() => onPress(item.props.children, item.props.value) }>
-          <View>
-            {item}
-          </View>
-        </TouchableWithoutFeedback>
+        // <View>
+        // <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          <TouchableHighlight onPress={() => {
+            // console.log("on press");
+            // Keyboard.dimiss()
+            onPress(item.props.children, item.props.value)
+          }}>
+            <View style={{ margin: 2 }}>
+              {item}
+            </View>
+          </TouchableHighlight>
+        // </View>
+        // </View>
+
       );
     });
 
@@ -38,11 +48,16 @@ export default class Items extends Component {
       ? customScrollViewComp
       : ScrollView
     return (
-      <View style={[styles.container, { top: positionY, left: positionX }, {backgroundColor}]}>
+      <View style={[styles.container, { top: positionY, left: positionX }, { backgroundColor }]}>
         <ScrollViewComp
-          style={{ width: width - 2, height: autoHeightItemsList && items.length < 3 ? 'auto' : height * 1.5 }}
+          style={{ width: width - 2, height: autoHeightItemsList && items.length < 3 ? 'auto' : height  }}
           automaticallyAdjustContentInsets={false}
-          bounces={false}>
+          bounces={false}
+          keyboardShouldPersistTaps="always"
+          // keyboardShouldPersistTaps={true}
+          keyboardDismissMode='on-drag'
+          delayPressIn={0}
+        >
           {renderedItems}
         </ScrollViewComp>
       </View>
@@ -64,7 +79,7 @@ Items.defaultProps = {
   positionX: 0,
   positionY: 0,
   show: false,
-  onPress: () => {},
+  onPress: () => { },
   autoHeightItemsList: false,
   backgroundColor: 'white'
 };

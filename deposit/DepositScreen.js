@@ -6,6 +6,7 @@ import HeaderView from '../headerview/HeaderView';
 import CardTypeSelectionView from '../cardTypeSeletion/CardTypeSelectionView';
 import DropDown from '../dropdownMenu';
 import EditBox from '../components/EditBox';
+import ButtonHighLight from '../components/ButtonHighLight';
 import * as Utils from '../Utils';
 
 const {
@@ -66,30 +67,35 @@ export default class DepositScreen extends React.Component {
                         <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
-                            <Text style={{ height : Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18), backgroundColor: 'blue' }}>
+                            <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18), backgroundColor: 'blue' }}>
                                 CHỌN MỆNH GIÁ{"\n"}
                             </Text>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 1 }}>
-                                <Select
-                                    width={250}
-                                    ref="SELECT1"
-                                    height={60}
-                                    optionListRef={this._getOptionList.bind(this)}
-                                    defaultValue="Chọn mệnh giá ..."
-                                    onSelect={this._canada.bind(this)}
-                                    styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height: 20 }}
-                                    styleText={{ color: 'white' }}
-                                    style={{ alignItems: 'center' }}
+                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 2}}>
+                                <View style={{ width: Utils.moderateScale(250), height: Utils.moderateScale(60), zIndex: 2 }}>
+                                    <Select
+                                        width={Utils.moderateScale(250)}
+                                        ref="SELECT1"
+                                        height={Utils.moderateScale(60)}
+                                        optionListRef={this._getOptionList.bind(this)}
+                                        defaultValue="Chọn mệnh giá ..."
+                                        onSelect={this._canada.bind(this)}
+                                        styleOption={{ alignSelf: 'flex-start', backgroundColor: DROPDOWN_MENU_COLOR, marginLeft: 15, marginTop: 20, height: 20 }}
+                                        styleText={{ color: 'white' }}
+                                        style={{ alignItems: 'center' }}
 
-                                    optionListProps={{ leftOffset: 40, topOffset: 20, extraWidth: -50 }}
-                                >
+                                        optionListProps={{ leftOffset: 15, topOffset: 20, extraWidth: -50 }}
+                                    >
+                                        <Option styleText={{ color: 'white' }}>100</Option>
+                                        <Option styleText={{ color: 'white' }}>200</Option>
+                                        <Option styleText={{ color: 'white' }}>300</Option>
+                                        <Option styleText={{ color: 'white' }}>400</Option>
 
-                                    <Option styleText={{ color: 'white' }}>Alberta</Option>
-                                    <Option styleText={{ color: 'white' }}>British Columbia</Option>
-                                    <Option styleText={{ color: 'white' }}>Manitoba</Option>
-                                    <Option styleText={{ color: 'white' }}>New Brunswick</Option>
-                                </Select>
-                                <OptionList ref="OPTIONLIST" backgroundColor={DROPDOWN_MENU_COLOR} />
+                                        <Option styleText={{ color: 'white' }}>500</Option>
+                                        <Option styleText={{ color: 'white' }}>600</Option>
+                                        <Option styleText={{ color: 'white' }}>700</Option>
+                                    </Select>
+                                    <OptionList ref="OPTIONLIST" backgroundColor={DROPDOWN_MENU_COLOR} />
+                                </View>
                             </View>
                             <Text style={{ zIndex: 0, alignSelf: 'center' }}> ooo ,,, ooo {"\n"} 999999 </Text>
                             <Text style={{ zIndex: 0, alignSelf: 'center' }}> Nạp thẻ </Text>
@@ -101,12 +107,14 @@ export default class DepositScreen extends React.Component {
                                 style={{ height: Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
                                 textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}
                             ></EditBox>
-                            <Button
-                                title="login screen"
+                            <ButtonHighLight
+                                customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center', marginTop : 10 }}
+                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', }}
+                                text="Login screen"
                                 onPress={() => {
                                     this.showAlert();
                                 }}
-                                style={{ zIndex: 0 }}
+                                imageSource={require('../assets/img_btn_1.png')}
                             />
 
                             <AwesomeAlert

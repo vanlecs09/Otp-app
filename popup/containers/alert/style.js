@@ -6,6 +6,7 @@ const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    zIndex : 10,
     flex: 1,
     width: "100%",
     height: "100%",

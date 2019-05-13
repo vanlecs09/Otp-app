@@ -5,7 +5,7 @@ import { StyleSheet, View, Text } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     // padding: 5,
-    // backgroundColor: 'white',
+    backgroundColor: 'red',
     // alignSelf: 'start'
   }
 });
