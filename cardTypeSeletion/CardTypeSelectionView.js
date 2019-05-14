@@ -22,7 +22,6 @@ class CardTypeSelectionView extends Component {
         <View style={{ flexDirection: 'row', width: '100%', marginTop: 30, justifyContent: 'center' }}>
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96), marginLeft: 5 }}
-            text="ĐĂNG NHẬP"
             onPress={() => { this.props.selectCard(1) }}
             imageSource={require('../assets/btn_vietel.png')}
             imageSelectSource={require('../assets/btn_vietel_select.png')}
@@ -30,7 +29,6 @@ class CardTypeSelectionView extends Component {
           />
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96) }}
-            text="QUAY LẠI"
             onPress={() => this.props.selectCard(2)}
             imageSource={require('../assets/btn_mobi.png')}
             imageSelectSource={require('../assets/btn_mobi_select.png')}
@@ -39,7 +37,6 @@ class CardTypeSelectionView extends Component {
 
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96), marginRight: 5 }}
-            text="QUAY LẠI"
             onPress={() => this.props.selectCard(3)}
             imageSource={require('../assets/btn_vina.png')}
             imageSelectSource={require('../assets/btn_vina_select.png')}

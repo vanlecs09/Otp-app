@@ -67,7 +67,7 @@ export default class DepositScreen extends React.Component {
                         <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
-                            <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18), backgroundColor: 'blue' }}>
+                            <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18)}}>
                                 CHỌN MỆNH GIÁ{"\n"}
                             </Text>
                             <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 2}}>

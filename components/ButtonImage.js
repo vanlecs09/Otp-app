@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity , Text, StyleSheet, ImageBackground, View, Image } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ImageBackground, View, Image } from 'react-native';
 
 class ButtonImage extends Component {
-    constructor(props) {
-        super(props);
-        this.titleName = "OTP";
-        this.state = {
-            select: false,
-        }
-      }
+	constructor(props) {
+		super(props);
+		this.titleName = "OTP";
+		this.state = {
+			select: false,
+		}
+	}
+
+	renderText(viewCombineStyle, text, textStyle) {
+		console.log("render text on button image " + text);
+		console.log(viewCombineStyle);
+		console.log(textStyle);
+		<View style={viewCombineStyle}>
+			<Text style={textStyle}>{text}</Text>
+		</View>
+	}
 
 	render() {
-		const {onPress, imageSource, imageSelectSource, customStyle, isButtonPressed } = this.props;
-        const imgSrc = isButtonPressed ? imageSelectSource : imageSource;
+		const { onPress, imageSource, imageSelectSource, customStyle, isButtonPressed, text, textStyle } = this.props;
+		const imgSrc = isButtonPressed ? imageSelectSource : imageSource;
+		const { view } = styles;
+		const viewCombineStyle = StyleSheet.flatten([view, customStyle]);
+		var renderTextObj = null;
+		text == undefined ? "" : text;
 		return (
-			<TouchableOpacity  style={customStyle}
+			<TouchableOpacity style={customStyle}
 				onPress={() => {
-                    onPress();
-                }}
+					onPress();
+				}}
 			>
-				<Image style={[styles.image, customStyle]} source={imgSrc}/>
+				<Image style={[styles.image, customStyle]} source={imgSrc} />
+				<View style={viewCombineStyle}>
+					<Text style={textStyle}>{text}</Text>
+				</View>
 			</TouchableOpacity >
 		);
 	}
@@ -31,10 +47,12 @@ ButtonImage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-	textStyle: {
-		fontSize: 20,
-		// color: '#ffffff',
-		textAlign: 'center',
+	view: {
+		position: 'absolute',
+		backgroundColor: 'transparent',
+		alignSelf: 'center',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 
 	image: {

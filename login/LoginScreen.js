@@ -33,9 +33,6 @@ class LoginScreen extends React.Component {
           <View style={styles.container2}>
             <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
               <View style={{ flex: 2, flexDirection: 'column' }}>
-
-
-
               </View>
               <View style={{ flex: 15, flexDirection: 'column' }}>
                 <Text style={{ marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18) }}>
@@ -94,7 +91,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     // height: null,
     // justifyContent: 'flex-start',
-    backgroundColor: 'black'
+    // backgroundColor: 'black'
   },
 
   text: {
