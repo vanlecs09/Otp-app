@@ -24,23 +24,15 @@ export default class Items extends Component {
 
   render() {
     const { backgroundColor, items, positionX, positionY, show, onPress, width, height, children, customScrollViewComp, autoHeightItemsList } = this.props;
-    console.log(backgroundColor);
     const renderedItems = React.Children.map(items, (item) => {
       return (
-        // <View>
-        // <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <TouchableHighlight onPress={() => {
-            // console.log("on press");
-            // Keyboard.dimiss()
             onPress(item.props.children, item.props.value)
           }}>
             <View style={{ margin: 2 }}>
               {item}
             </View>
           </TouchableHighlight>
-        // </View>
-        // </View>
-
       );
     });
 

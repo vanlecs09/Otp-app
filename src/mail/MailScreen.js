@@ -12,7 +12,7 @@ class MailScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-        this.titleName = "HOP THU";
+        this.titleName = "HỘP THƯ";
     }
 
     showAlert = () => {
@@ -31,7 +31,7 @@ class MailScreen extends Component {
         const myData = [1, 2, 3, 4, 5, 7, 8, 9, 10, 1, 1, 1, 1, 1];
         const { showAlert } = this.state;
         return (
-            <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
+            <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
                     visible={this.props.isLoading}
                     overlayColor="rgba(0,0,0,0.5)"
@@ -41,7 +41,7 @@ class MailScreen extends Component {
                 <View style={styles.container}>
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
-                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
+                        <ImageBackground source={require('../../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
                             <View style={{ flex: 2, flexDirection: 'column' }}>
                             </View>
                             <View style={{ justifyContent: 'flex-start', marginTop: 0, flex:14 }}>
@@ -54,7 +54,7 @@ class MailScreen extends Component {
 
                                             <ButtonHighLight 
                                                 customStyle={{ height: Utils.moderateScale(50), width: Utils.moderateScale(300), margin: 5,alignSelf: 'center', resizeMode: 'contain' }}
-                                                textStyle={{ fontSize: 20, color: 'black', textAlign: 'center', }}
+                                                textStyle={{ fontSize: 20, color: 'black', textAlign: 'center', marginBottom : 5}}
                                                 text="MAI DOC DI NE"
                                                 onPress={() => {
                                                     this.showAlert();
@@ -76,8 +76,8 @@ class MailScreen extends Component {
                                     closeOnHardwareBackPress={false}
                                     showCancelButton={true}
                                     showConfirmButton={true}
-                                    confirmButtonImgSrc={require('../assets/btn_confirm.png')}
-                                    cancelButtonImgSrc={require('../assets/btn_cancel.png')}
+                                    confirmButtonImgSrc={require('../../assets/btn_confirm.png')}
+                                    cancelButtonImgSrc={require('../../assets/btn_cancel.png')}
                                     onCancelPressed={() => {
                                         this.hideAlert();
                                     }}

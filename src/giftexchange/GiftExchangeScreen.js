@@ -11,62 +11,62 @@ import { connect } from 'react-redux';
 import * as AppActions from '../actions';
 
 const arrVietelImage = [
-    require('../assets/btn_vietel.png'),
-    require('../assets/btn_vietel.png'),
-    require('../assets/btn_vietel.png'),
-    require('../assets/btn_vietel.png'),
-    require('../assets/btn_vietel.png'),
-    require('../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
+    require('../../assets/btn_vietel.png'),
 ]
 
 const arrVietelImageSelect = [
-    require('../assets/btn_vietel_select.png'),
-    require('../assets/btn_vietel_select.png'),
-    require('../assets/btn_vietel_select.png'),
-    require('../assets/btn_vietel_select.png'),
-    require('../assets/btn_vietel_select.png'),
-    require('../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
+    require('../../assets/btn_vietel_select.png'),
 ]
 
 
 const arrMobiImage = [
-    require('../assets/btn_mobi.png'),
-    require('../assets/btn_mobi.png'),
-    require('../assets/btn_mobi.png'),
-    require('../assets/btn_mobi.png'),
-    require('../assets/btn_mobi.png'),
-    require('../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
+    require('../../assets/btn_mobi.png'),
 ]
 
 const arrMobiImageSelect = [
-    require('../assets/btn_mobi_select.png'),
-    require('../assets/btn_mobi_select.png'),
-    require('../assets/btn_mobi_select.png'),
-    require('../assets/btn_mobi_select.png'),
-    require('../assets/btn_mobi_select.png'),
-    require('../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
+    require('../../assets/btn_mobi_select.png'),
 ]
 
 const arrNivaImage = [
-    require('../assets/btn_vina.png'),
-    require('../assets/btn_vina.png'),
-    require('../assets/btn_vina.png'),
-    require('../assets/btn_vina.png'),
-    require('../assets/btn_vina.png'),
-    require('../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
+    require('../../assets/btn_vina.png'),
 ]
 
 const arrNivaImageSelect = [
-    require('../assets/btn_vina_select.png'),
-    require('../assets/btn_vina_select.png'),
-    require('../assets/btn_vina_select.png'),
-    require('../assets/btn_vina_select.png'),
-    require('../assets/btn_vina_select.png'),
-    require('../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
+    require('../../assets/btn_vina_select.png'),
 ]
 
 const arrImageall = {
-    image: require('../assets/btn_vietel.png'),
+    image: require('../../assets/btn_vietel.png'),
 }
 
 class GiftExchangeScreen extends React.Component {
@@ -125,7 +125,7 @@ class GiftExchangeScreen extends React.Component {
             arrImageSelect = arrVietelImageSelect;
         }
         return (
-            <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
+            <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
                     visible={this.props.isLoading}
                     overlayColor="rgba(0,0,0,0.5)"
@@ -135,7 +135,7 @@ class GiftExchangeScreen extends React.Component {
                 <View style={styles.container}>
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
-                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
+                        <ImageBackground source={require('../../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
                             <Text style={{ alignSelf: 'center', marginTop: 60 }}>Chon Menh Gia</Text>
@@ -168,12 +168,12 @@ class GiftExchangeScreen extends React.Component {
 
                             <ButtonHighLight style={{ marginBottom: 0 }}
                                 customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center' }}
-                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', }}
+                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom : 5 }}
                                 text="ĐỔI QUÀ"
                                 onPress={() => {
                                     this.showAlert();
                                 }}
-                                imageSource={require('../assets/img_btn_1.png')}
+                                imageSource={require('../../assets/img_btn_1.png')}
                             />
                             <AwesomeAlert
                                 show={showAlert}
@@ -187,8 +187,8 @@ class GiftExchangeScreen extends React.Component {
                                 showConfirmButton={true}
 
 
-                                confirmButtonImgSrc={require('../assets/btn_confirm.png')}
-                                cancelButtonImgSrc={require('../assets/btn_cancel.png')}
+                                confirmButtonImgSrc={require('../../assets/btn_confirm.png')}
+                                cancelButtonImgSrc={require('../../assets/btn_cancel.png')}
                                 onCancelPressed={() => {
                                     this.hideAlert();
                                 }}

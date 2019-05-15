@@ -21,7 +21,7 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
+      <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
         <AnimatedLoader
           visible={this.props.isLoading}
           overlayColor="rgba(0,0,0,0.5)"
@@ -31,7 +31,7 @@ class LoginScreen extends React.Component {
         <View style={styles.container}>
           <HeaderView titleName={this.titleName}></HeaderView>
           <View style={styles.container2}>
-            <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
+            <ImageBackground source={require('../../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
               <View style={{ flex: 2, flexDirection: 'column' }}>
               </View>
               <View style={{ flex: 15, flexDirection: 'column' }}>
@@ -56,7 +56,7 @@ class LoginScreen extends React.Component {
                   textStyle={styles.buttonFont}
                   text="ĐĂNG NHẬP"
                   onPress={() => this.props.login({})}
-                  imageSource={require('../assets/img_btn_1.png')}
+                  imageSource={require('../../assets/img_btn_1.png')}
                 />
 
                 <ButtonHighLight style={{ marginBottom: 0 }}
@@ -64,7 +64,7 @@ class LoginScreen extends React.Component {
                   textStyle={styles.buttonFont}
                   text="QUAY LAI"
                   onPress={() => this.props.login({})}
-                  imageSource={require('../assets/img_btn_2.png')}
+                  imageSource={require('../../assets/img_btn_2.png')}
                 />
               </View>
             </ImageBackground>
@@ -102,7 +102,7 @@ var styles = StyleSheet.create({
   },
 
   buttonFont: {
-    fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center',
+    fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom : 5
   },
 
   iconBtn: {

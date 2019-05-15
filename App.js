@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text } from 'react-native'
 import { createAppContainer, createDrawerNavigator } from 'react-navigation';
-import LoginScreen from './login/LoginScreen'
-import DepositScreen from './deposit/DepositScreen';
-import GiftExchangeScreen from './giftexchange/GiftExchangeScreen';
-import MailScreen from './mail/MailScreen';
-import HistoryScreen from './history/HistoryScreen';
+import LoginScreen from './src/login/LoginScreen'
+import DepositScreen from './src/deposit/DepositScreen';
+import GiftExchangeScreen from './src/giftexchange/GiftExchangeScreen';
+import MailScreen from './src/mail/MailScreen';
+import HistoryScreen from './src/history/HistoryScreen';
 
-import SideBar from './sidebar/SideBar';
+import SideBar from './src/sidebar/SideBar';
 
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers';
+import rootReducer from './src/reducers';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 const store = createStore(rootReducer, 

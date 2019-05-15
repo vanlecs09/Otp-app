@@ -23,23 +23,23 @@ class CardTypeSelectionView extends Component {
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96), marginLeft: 5 }}
             onPress={() => { this.props.selectCard(1) }}
-            imageSource={require('../assets/btn_vietel.png')}
-            imageSelectSource={require('../assets/btn_vietel_select.png')}
+            imageSource={require('../../assets/btn_vietel.png')}
+            imageSelectSource={require('../../assets/btn_vietel_select.png')}
             isButtonPressed={cardIndex == 1}
           />
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96) }}
             onPress={() => this.props.selectCard(2)}
-            imageSource={require('../assets/btn_mobi.png')}
-            imageSelectSource={require('../assets/btn_mobi_select.png')}
+            imageSource={require('../../assets/btn_mobi.png')}
+            imageSelectSource={require('../../assets/btn_mobi_select.png')}
             isButtonPressed={cardIndex == 2}
           />
 
           <ButtonImage
             customStyle={{ height: Utils.moderateScale(70), width: Utils.moderateScale(96), marginRight: 5 }}
             onPress={() => this.props.selectCard(3)}
-            imageSource={require('../assets/btn_vina.png')}
-            imageSelectSource={require('../assets/btn_vina_select.png')}
+            imageSource={require('../../assets/btn_vina.png')}
+            imageSelectSource={require('../../assets/btn_vina_select.png')}
             isButtonPressed={cardIndex == 3}
           />
         </View>

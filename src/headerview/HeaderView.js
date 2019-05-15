@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import ButtonImageNavigation from '../components/ButtonImageNavigation';
-import btnNavNormal from '../assets/btn_nav_normal.png';
-import btnSelect from '../assets/btn_nav_select.png';
+import btnNavNormal from '../../assets/btn_nav_normal.png';
+import btnSelect from '../../assets/btn_nav_select.png';
 
 export default class HeaderView extends React.Component {
     constructor(props) {

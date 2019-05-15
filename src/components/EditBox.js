@@ -11,7 +11,7 @@ class EditBox extends Component {
         return (
             <View style={[styles.SectionStyle, style]}>
                 <ImageBackground
-                    source={require('../assets/img_input.png')}
+                    source={require('../../assets/img_input.png')}
                     style={[styles.ImageStyle, {width: style.width, height: style.height}]}
                     resizeMode='contain'>
                     <TextInput

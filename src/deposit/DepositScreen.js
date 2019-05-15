@@ -54,7 +54,7 @@ export default class DepositScreen extends React.Component {
     render() {
         const { showAlert } = this.state;
         return (
-            <ImageBackground source={require('../assets/img_bg.png')} style={styles.background}>
+            <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
                     visible={this.props.isLoading}
                     overlayColor="rgba(0,0,0,0.5)"
@@ -64,7 +64,7 @@ export default class DepositScreen extends React.Component {
                 <View style={styles.container}>
                     <HeaderView titleName={this.titleName}></HeaderView>
                     <View style={styles.container2}>
-                        <ImageBackground source={require('../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
+                        <ImageBackground source={require('../../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
                             <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18)}}>
@@ -109,12 +109,12 @@ export default class DepositScreen extends React.Component {
                             ></EditBox>
                             <ButtonHighLight
                                 customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center', marginTop : 10 }}
-                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', }}
+                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center',marginBottom : 5 }}
                                 text="Login screen"
                                 onPress={() => {
                                     this.showAlert();
                                 }}
-                                imageSource={require('../assets/img_btn_1.png')}
+                                imageSource={require('../../assets/img_btn_1.png')}
                             />
 
                             <AwesomeAlert
@@ -129,8 +129,8 @@ export default class DepositScreen extends React.Component {
                                 showConfirmButton={true}
 
 
-                                confirmButtonImgSrc={require('../assets/btn_confirm.png')}
-                                cancelButtonImgSrc={require('../assets/btn_cancel.png')}
+                                confirmButtonImgSrc={require('../../assets/btn_confirm.png')}
+                                cancelButtonImgSrc={require('../../assets/btn_cancel.png')}
                                 onCancelPressed={() => {
                                     this.hideAlert();
                                 }}
