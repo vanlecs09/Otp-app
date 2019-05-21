@@ -71,10 +71,6 @@ class LoginScreen extends React.Component {
       placeHolder = "Nhập số điện thoại của bạn";
       alertMessage = "Ban da dang nhap thanh cong";
       NavigationService.navigate('DepositScreen');
-      // hidePopupCallBack = () => {
-      //   console.log("hide pop up call back");
-      //   NavigationService.navigate('DepositScreen');
-      // }
     } else if (loginStatus == AppActions.ENTER_PIN_ERROR) {
       placeHolder = "Nhập số điện thoại của bạn";
     }

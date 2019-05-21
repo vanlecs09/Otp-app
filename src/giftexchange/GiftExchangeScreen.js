@@ -76,6 +76,14 @@ class GiftExchangeScreen extends React.Component {
         this.titleName = "Đổi quà";
     }
 
+    componentDidMount = () => {
+        this.props.navigation.addListener('willFocus', this.load)
+    }
+
+    load = () => {
+        this.props.resetDeposit();
+    }
+
 
     showAlert = () => {
         this.setState({
@@ -108,13 +116,13 @@ class GiftExchangeScreen extends React.Component {
         const { cardIndex, cardValueIndex } = this.props;
         var arrImage = [];
         var arrImageSelect = [];
-        if (cardIndex == 1) {
+        if (cardIndex == 0) {
             arrImage = arrVietelImage;
             arrImageSelect = arrVietelImageSelect;
-        } else if (cardIndex == 2) {
+        } else if (cardIndex == 1) {
             arrImage = arrMobiImage;
             arrImageSelect = arrMobiImageSelect;
-        } else if (cardIndex == 3) {
+        } else if (cardIndex == 2) {
             arrImage = arrNivaImage;
             arrImageSelect = arrNivaImageSelect;
         } else {
@@ -242,6 +250,9 @@ const mapDispatchToProps = dispatch => {
     return {
         selectCardValue: (cardValueIndex) => {
             dispatch(AppActions.selectCardValue(cardValueIndex));
+        },
+        resetDeposit: () => {
+            dispatch(AppActions.resetDeposit());
         }
     }
 }

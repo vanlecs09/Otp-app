@@ -65,7 +65,7 @@ const login = (state = { isLoading: false, loginStatus: LOGIN_NONE, showAlert: f
                 loginStatus: ENTER_PIN_SUCESS,
                 isLoading: false,
                 isLogged: true,
-                showAlert: true,
+                // showAlert: true,
             }
         }
     }

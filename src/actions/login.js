@@ -29,7 +29,6 @@ export const requestLoginPhone = (phoneNumber) => {
 
         var url = Configs.loginURL + phoneNumber;
         console.log(Configs);
-        // var url = Configs.loginURLMock + phoneNumber;
         
 
         return fetch(url, {
@@ -68,11 +67,6 @@ export const reuqestLoginPin = (phoneNumber, pinCode) => {
         }
 
         var url = Configs.confrimPinURL;
-        console.log("url " + url);
-        // var url = Configs.confirmPinURLMock;
-        // var formData = new FormData();
-        // formData.append('phone', phoneNumber);
-        // formData.append('code', pinCode);
         console.log(JSON.stringify({
             phone: phoneNumber,
             code: pinCode

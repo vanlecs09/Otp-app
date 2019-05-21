@@ -21,31 +21,46 @@ const routes = [
         title: "DepositScreen",
         name: "Nạp thẻ",
         icon: icon_deposit_normal,
-        iconSelect: icon_deposit_select
+        iconSelect: icon_deposit_select,
+        callback : () => {
+
+        }
     },
     {
         title: "GiftExchangeScreen",
         name: "Đổi quà",
         icon: icon_gift_normal,
-        iconSelect: icon_gift_select
+        iconSelect: icon_gift_select,
+        callback : () => {
+
+        }
     },
     {
         title: "MailScreen",
         name: "Hộp thư",
         icon: icon_mail_normal,
-        iconSelect: icon_mail_select
+        iconSelect: icon_mail_select,
+        callback : () => {
+
+        }
     },
     {
         title: "HistoryScreen",
         name: "Lịch sử",
         icon: icon_history_normal,
-        iconSelect: icon_history_select
+        iconSelect: icon_history_select,
+        callback : () => {
+
+        }
     },
     {
         title: "SupportScreen",
         name: "Hỗ trợ",
         icon: icon_sup_normal,
-        iconSelect: icon_sup_select
+        iconSelect: icon_sup_select,
+        callback : () => {
+
+        }
     },];
 
 class SideBar extends React.Component {
@@ -70,14 +85,14 @@ class SideBar extends React.Component {
 
 
     navigateTo = (title) => {
-        if(this.isLogged)
-        {
-            this.props.navigation.navigate(data.title)
-        }
+        // if(this.isLogged)
+        // {
+            this.props.navigation.navigate(title)
+        // }
         
-        {
-            this.showAlert();
-        }   
+        // {
+            // this.showAlert();
+        // }   
     }
 
     render() {

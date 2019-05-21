@@ -8,6 +8,8 @@ import DropDown from '../dropdownMenu';
 import EditBox from '../components/EditBox';
 import ButtonHighLight from '../components/ButtonHighLight';
 import * as Utils from '../Utils';
+import { connect } from 'react-redux';
+import * as AppActions from '../actions';
 
 const {
     Select,
@@ -18,13 +20,21 @@ const {
 
 const DROPDOWN_MENU_COLOR = 'rgb(43, 49, 53)'
 
-export default class DepositScreen extends React.Component {
+class DepositScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { showPopUp: false };
         this.titleName = "Nạp thẻ";
+
     }
 
+    componentDidMount = () => {
+        this.props.navigation.addListener('willFocus', this.load)
+    }
+
+    load = () => {
+        this.props.resetDeposit();
+    }
 
     showAlert = () => {
         this.setState({
@@ -53,6 +63,8 @@ export default class DepositScreen extends React.Component {
 
     render() {
         const { showAlert } = this.state;
+        const { cardIndex } = this.props;
+        console.log("deposit render");
         return (
             <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
@@ -67,10 +79,10 @@ export default class DepositScreen extends React.Component {
                         <ImageBackground source={require('../../assets/img_bg2.png')} style={{ width: '100%', height: '100%' }} resizeMode='cover'>
 
                             <CardTypeSelectionView></CardTypeSelectionView>
-                            <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18)}}>
+                            <Text style={{ height: Utils.moderateScale(20), marginTop: 5, fontFamily: 'Montserrat_large', alignSelf: 'center', fontSize: Utils.moderateScale(18) }}>
                                 CHỌN MỆNH GIÁ{"\n"}
                             </Text>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 2}}>
+                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 0, zIndex: 2 }}>
                                 <View style={{ width: Utils.moderateScale(250), height: Utils.moderateScale(60), zIndex: 2 }}>
                                     <Select
                                         width={Utils.moderateScale(250)}
@@ -108,8 +120,8 @@ export default class DepositScreen extends React.Component {
                                 textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}
                             ></EditBox>
                             <ButtonHighLight
-                                customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center', marginTop : 10 }}
-                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center',marginBottom : 5 }}
+                                customStyle={{ height: Utils.moderateScale(61), width: Utils.moderateScale(200), alignSelf: 'center', marginTop: 10 }}
+                                textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom: 5 }}
                                 text="Login screen"
                                 onPress={() => {
                                     this.showAlert();
@@ -147,6 +159,21 @@ export default class DepositScreen extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+          cardIndex: state.deposit.cardIndex
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        resetDeposit: () => {
+            dispatch(AppActions.resetDeposit());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DepositScreen);
 
 
 
