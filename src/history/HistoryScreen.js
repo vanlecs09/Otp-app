@@ -28,19 +28,6 @@ class HistoryScreen extends Component {
         });
     };
 
-    // showDespoitHistory = () => {
-    //     this.setState({
-    //         showHistory: true,
-    //     })
-    // };
-
-    // showExchangeHistory = () => {
-    //     this.setState({
-    //         showHistory: false,
-    //     })
-    // }
-
-
     showExchangeHistoryView = () => {
         const myData = [1, 2, 3, 4, 5, 7, 8, 9, 10, 1, 1, 1, 1, 1];
         return (
@@ -144,7 +131,6 @@ class HistoryScreen extends Component {
         const { showAlert, showHistory } = this.state;
         const { historyState } = this.props;
         const historyview = historyState == AppActions.SELECT_DEPOSIT_HISTORY ? this.showDepositHistoryView() : this.showExchangeHistoryView();
-        console.log(historyState);
         return (
             <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader

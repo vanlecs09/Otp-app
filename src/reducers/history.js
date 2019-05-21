@@ -1,7 +1,6 @@
 import { SELECT_DEPOSIT_HISTORY, SELECT_GIFT_EXCHANGE_HISTORY } from '../actions';
 
 const deposit = (state = { historyState : SELECT_DEPOSIT_HISTORY }, action) => {
-    console.log(action);
     const { type } = action;
     switch (type) {
         case SELECT_DEPOSIT_HISTORY: {

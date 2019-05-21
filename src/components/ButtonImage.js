@@ -12,9 +12,6 @@ class ButtonImage extends Component {
 	}
 
 	renderText(viewCombineStyle, text, textStyle) {
-		console.log("render text on button image " + text);
-		console.log(viewCombineStyle);
-		console.log(textStyle);
 		<View style={viewCombineStyle}>
 			<Text style={textStyle}>{text}</Text>
 		</View>

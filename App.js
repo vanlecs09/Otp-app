@@ -6,6 +6,7 @@ import DepositScreen from './src/deposit/DepositScreen';
 import GiftExchangeScreen from './src/giftexchange/GiftExchangeScreen';
 import MailScreen from './src/mail/MailScreen';
 import HistoryScreen from './src/history/HistoryScreen';
+import NavigationService from './src/services/NavigationService';
 
 import SideBar from './src/sidebar/SideBar';
 
@@ -55,7 +56,10 @@ export default class App extends React.Component {
     if (this.state.isReady) {
       return (
         <Provider store={store}>
-          <AppCon2>
+          <AppCon2  ref={navigatorRef => {
+          NavigationService.setContainer(navigatorRef);
+        }}>
+         
           </AppCon2>
         </Provider>
       )

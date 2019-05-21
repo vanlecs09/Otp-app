@@ -1,7 +1,6 @@
 import {SELECT_CARD, SELECT_CARD_VALUE} from '../actions';
 
 const deposit = (state = { cardIndex : -1, cardValueIndex : -1}, action) => {
-    console.log(action);
     const {type, cardIndex, cardValueIndex} = action;
     switch(type) {
         case SELECT_CARD:{

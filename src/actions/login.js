@@ -1,4 +1,8 @@
 
+import * as Configs from '../Configs';
+import config from '../popup/config';
+import FormData from 'form-data';
+
 export const START_LOGIN = 'START_LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -7,17 +11,26 @@ export const LOGIN_NONE = 'LOGIN_NONE';
 export const HIDE_ALERT = 'HIDE_ALERT';
 export const LOGIN_BACK = 'LOGIN_BACK';
 
+export const ENTER_PIN_SUCESS = 'ENTER_PIN_SUCESS';
+export const ENTER_PIN_ERROR = 'ENTER_PIN_ERROR';
+
+
 
 export const requestLoginPhone = (phoneNumber) => {
+    console.log("requestLoginPhone " + phoneNumber);
     return (dispatch) => {
         dispatch(startLogin());
-        if (!phoneNumber) {
+        console.log(phoneNumber);
+        if (phoneNumber == undefined) {
             dispatch(stopLogin());
-            dispatch(loginError('Please Enter Phone Number'))
+            dispatch(loginError('Please Enter Phone Number ' + phoneNumber))
             return;
         }
 
-        var url = 'http://api.vosovang.com/api/otp?phone='+ phoneNumber;
+        var url = Configs.loginURL + phoneNumber;
+        console.log(Configs);
+        // var url = Configs.loginURLMock + phoneNumber;
+        
 
         return fetch(url, {
             method: 'GET',
@@ -43,37 +56,55 @@ export const requestLoginPhone = (phoneNumber) => {
     }
 }
 
-export const reuqestLoginPin = (pinCode) => {
+export const reuqestLoginPin = (phoneNumber, pinCode) => {
     return (dispatch) => {
         dispatch(startLogin());
-        if (!phoneNumber) {
+
+        console.log("reuqestLoginPin " + phoneNumber + " >>>>> " + pinCode);
+        if (!pinCode || !phoneNumber) {
             dispatch(stopLogin());
-            dispatch(loginError('Please Enter Phone Number'))
+            dispatch(loginError('Invalid pinCode or phone number'))
             return;
         }
 
-
+        var url = Configs.confrimPinURL;
+        console.log("url " + url);
+        // var url = Configs.confirmPinURLMock;
+        // var formData = new FormData();
+        // formData.append('phone', phoneNumber);
+        // formData.append('code', pinCode);
+        console.log(JSON.stringify({
+            phone: phoneNumber,
+            code: pinCode
+        }));
 
         return fetch(url, {
-            method: 'GET',
+            method: 'POST',
             headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+                phone: phoneNumber,
+                code: pinCode
+            })
+            // body: 'phone=phoneNumber&code=pinCode'
         })
             .then((res) => res.json())
             .then(res => {
                 dispatch(stopLogin());
                 console.log(res);
                 if (res.code == 200) {
-                    dispatch(loginSuccess());
+                    dispatch(enterPinSucess());
 
                 } else {
-                    dispatch(loginError(res.message));
+                    dispatch(enterPinError(res.message));
                 }
 
             })
             .catch((e) => {
                 console.log(e);
-                dispatch(loginError('error unknow'));
+                dispatch(enterPinError('error unknow'));
             });
     }
 }
@@ -149,6 +180,19 @@ const loginError = (errorMessage) => {
 const loginSuccess = () => {
     return {
         type: LOGIN_SUCCESS,
+    }
+}
+
+const enterPinSucess = (errorMessage) => {
+    return {
+        type: ENTER_PIN_SUCESS,
+        errorMessage: errorMessage,
+    }
+}
+
+const enterPinError = () => {
+    return {
+        type: ENTER_PIN_ERROR
     }
 }
 

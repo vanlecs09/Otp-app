@@ -7,19 +7,92 @@ import { connect } from 'react-redux';
 import EditBox from '../components/EditBox';
 import * as Utils from '../Utils';
 import * as AppActions from '../actions';
+import AwesomeAlert from '../popup';
+import NavigationService from '../services/NavigationService';
 
 var { vw, vh, vmin, vmax } = require('react-native-viewport-units');
 
+
+var UserModel = {
+  phoneNumber: '',
+  pinCode: ''
+}
 
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.titleName = "OTP";
-    console.log(Utils.screenWidth);
-    console.log(vw + " " + vh + " " + vmin + " " + vmax);
+    this.phoneNumber = '';
+    this.pinCode = '';
+    this.state = {
+      showAlert: false,
+      inputText: '',
+    }
   }
 
+  hideAlert = () => {
+    this.setState({
+        ...this.state,
+        showAlert: false
+    });
+  };
+   showAlert = () => {
+     this.setState({
+       ...this.state,
+      showAlert: true
+     })
+   }
+
+   clearText = () => {
+     this.setState({
+       ...this.state,
+       inputText: '',
+     })
+   }
+
+
   render() {
+    var alertMessage = "";
+    var placeHolder = "";
+    var hidePopupCallBack = () => {
+      this.props.hideAlert();
+      this.clearText();
+    }
+    const {loginStatus, errorMessage, showAlert } = this.props;
+    if (loginStatus == AppActions.LOGIN_SUCCESS) {
+      alertMessage = "Ban da dang nhap thanh cong, ma code da duoc gui den dien thoai";
+      placeHolder = "Nhập số Ma pin cua ban";
+    } else if(loginStatus == AppActions.LOGIN_ERROR) {
+      alertMessage = errorMessage;
+      placeHolder = "Nhập số điện thoại của bạn";
+    } else if (loginStatus == AppActions.LOGIN_BACK){ 
+      placeHolder = "Nhập số điện thoại của bạn";
+    } else if (loginStatus == AppActions.ENTER_PIN_SUCESS) {
+      placeHolder = "Nhập số điện thoại của bạn";
+      alertMessage = "Ban da dang nhap thanh cong";
+      NavigationService.navigate('DepositScreen');
+      // hidePopupCallBack = () => {
+      //   console.log("hide pop up call back");
+      //   NavigationService.navigate('DepositScreen');
+      // }
+    } else if (loginStatus == AppActions.ENTER_PIN_ERROR) {
+      placeHolder = "Nhập số điện thoại của bạn";
+    }
+    const renderButtonBack = () => {
+      return ( <ButtonHighLight style={{ marginBottom: 0 }}
+        customStyle={styles.buttonHighLight}
+        textStyle={styles.buttonFont}
+        text="QUAY LAI"
+        onPress={() => {
+          this.props.back();
+        }}
+        imageSource={require('../../assets/img_btn_2.png')}
+      />)
+    }
+
+
+    const buttonBackView = loginStatus == AppActions.LOGIN_SUCCESS || loginStatus == AppActions.ENTER_PIN_ERROR || loginStatus == AppActions.ENTER_PIN_SUCESS ? renderButtonBack() : null;
+
     return (
       <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
         <AnimatedLoader
@@ -43,9 +116,22 @@ class LoginScreen extends React.Component {
                   2. Một mã OTP sẽ được gửi đến số điện thoại đó{"\n"}
                   3. Dùng mã OTP đó để truy nhập vào App{"\n"}
                 </Text >
-                <EditBox placeholder="Nhập số điện thoại của bạn"
+                <EditBox placeholder={placeHolder}
                   style={{ height: Utils.moderateScale(56), width: Utils.moderateScale(292), marginTop: 10 }}
                   textStyle={{ flex: 1, marginLeft: 60, fontFamily: 'Montserrat_small', fontSize: Utils.moderateScale(15) }}
+                  enterTextHandler={(text) => {
+                    if(loginStatus == AppActions.LOGIN_SUCCESS || loginStatus == AppActions.ENTER_PIN_ERROR) {
+                      UserModel.pinCode = text;
+                    } else {
+                      UserModel.phoneNumber = text;
+                    }
+
+                    this.setState({
+                      ...this.state,
+                      inputText: text,
+                    })
+                  }}
+                  textValue = {this.state.inputText}
                 ></EditBox>
                 <Text style={styles.text}>
                   Mã OTP đã được gửi đến số điện thoái của bạn {"\n"}
@@ -55,17 +141,42 @@ class LoginScreen extends React.Component {
                   customStyle={styles.buttonHighLight}
                   textStyle={styles.buttonFont}
                   text="ĐĂNG NHẬP"
-                  onPress={() => this.props.login({})}
+                  onPress={() => {
+                    if(loginStatus == AppActions.LOGIN_SUCCESS) {
+                      this.props.enterPin(UserModel.phoneNumber, UserModel.pinCode);
+                     
+                    } else {
+                      this.props.login(UserModel.phoneNumber);
+                    }}
+                  }
+                   
                   imageSource={require('../../assets/img_btn_1.png')}
                 />
+                {buttonBackView}
+                <AwesomeAlert
+                  show={showAlert}
+                  showProgress={false}
+                  title="Thông báo"
+                  titleStyle={{ color: 'rgb(247,165,117)' }}
+                  message={alertMessage}
+                  closeOnTouchOutside={true}
+                  closeOnHardwareBackPress={false}
+                  showConfirmButton={true}
 
-                <ButtonHighLight style={{ marginBottom: 0 }}
-                  customStyle={styles.buttonHighLight}
-                  textStyle={styles.buttonFont}
-                  text="QUAY LAI"
-                  onPress={() => this.props.login({})}
-                  imageSource={require('../../assets/img_btn_2.png')}
+
+                  confirmButtonImgSrc={require('../../assets/btn_confirm.png')}
+                  cancelButtonImgSrc={require('../../assets/btn_cancel.png')}
+                  onCancelPressed={() => {
+                    this.props.hideAlert();
+                    this.clearText();
+                  }}
+                  onConfirmPressed={() => {
+                    // this.props.hideAlert();
+                    // this.clearText();
+                    hidePopupCallBack();
+                  }}
                 />
+
               </View>
             </ImageBackground>
           </View>
@@ -89,9 +200,6 @@ var styles = StyleSheet.create({
     width: '95%',
     alignItems: 'center',
     justifyContent: 'center',
-    // height: null,
-    // justifyContent: 'flex-start',
-    // backgroundColor: 'black'
   },
 
   text: {
@@ -102,7 +210,7 @@ var styles = StyleSheet.create({
   },
 
   buttonFont: {
-    fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom : 5
+    fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom: 5
   },
 
   iconBtn: {
@@ -123,14 +231,27 @@ var styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.login.isLoading
+    isLoading: state.login.isLoading,
+    loginStatus: state.login.loginStatus,
+    errorMessage: state.login.errorMessage,
+    showAlert: state.login.showAlert
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (user) => {
-      dispatch(AppActions.requestLoginByPass(user));
+    login: (phoneNumber) => {
+      console.log("login " + phoneNumber);
+      dispatch(AppActions.requestLoginPhone(phoneNumber));
+    },
+    enterPin: (phoneNumber, pinCode) => {
+      dispatch(AppActions.reuqestLoginPin(phoneNumber, pinCode));
+    },
+    hideAlert: () => {
+      dispatch(AppActions.hideAlert());
+    },
+    back: () => {
+      dispatch(AppActions.loginBack());
     }
   }
 }

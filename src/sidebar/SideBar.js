@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList, TextInput, ImageBackground, Image, StyleSheet, View } from 'react-native';
-import SlideBarItem from './SideBarItem';
+import { ImageBackground, Image, StyleSheet } from 'react-native';
 import { Button, Text, Container, List, ListItem, Content, Icon, Left, Right, Body } from "native-base";
-
+import { connect } from 'react-redux';
+import AwesomeAlert from '../popup';
 import icon_deposit_normal from './res/img_sidebar_icon_deposit_normal.png';
 import icon_deposit_select from './res/img_sidebar_icon_deposit_select.png';
 
@@ -48,12 +48,41 @@ const routes = [
         iconSelect: icon_sup_select
     },];
 
-export default class SideBar extends React.Component {
+class SideBar extends React.Component {
     constructor(props) {
         super(props);
+        this.state  = {
+            showAlert: false,
+        }
+    }
+
+    hideAlert = () => {
+        this.setState({
+            showAlert: false,
+        })
+    }
+
+    showAlert = () => {
+        this.setState({
+            showAlert: true,
+        })
+    }
+
+
+    navigateTo = (title) => {
+        if(this.isLogged)
+        {
+            this.props.navigation.navigate(data.title)
+        }
+        
+        {
+            this.showAlert();
+        }   
     }
 
     render() {
+        const {isLogged} = this.props;
+        this.isLogged = isLogged;
         return (
             <ImageBackground source={require('./res/img_sidebar_bg.png')} style={styles.background}>
                 <List
@@ -63,7 +92,7 @@ export default class SideBar extends React.Component {
                         return (
                             <ListItem
                                 buttonx
-                                onPress={() => this.props.navigation.navigate(data.title)}
+                                onPress={() => {this.navigateTo(data.title)}}
                             >
                                 <Left style = {{marginLeft: 20}}>
                                     <Image source={data.icon} style={{ width: 40, height: 40 }}></Image>
@@ -78,10 +107,43 @@ export default class SideBar extends React.Component {
                         );
                     }}
                 />
+                 <AwesomeAlert
+                  show={this.state.showAlert}
+                  showProgress={false}
+                  title="Thông báo"
+                  titleStyle={{ color: 'rgb(247,165,117)' }}
+                  message={"ban chua loggin"}
+                  closeOnTouchOutside={true}
+                  closeOnHardwareBackPress={false}
+                  showConfirmButton={true}
+
+
+                  confirmButtonImgSrc={require('../../assets/btn_confirm.png')}
+                  cancelButtonImgSrc={require('../../assets/btn_cancel.png')}
+                  onCancelPressed={() => {
+                    this.hideAlert();
+                  }}
+                  onConfirmPressed={() => {
+                    this.hideAlert();
+                  }}
+                />
             </ImageBackground>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        // name
+        isLogged: state.login.isLogged,
+    //   isLoading: state.login.isLoading,
+    //   loginStatus: state.login.loginStatus,
+    //   errorMessage: state.login.errorMessage,
+    //   showAlert: state.login.showAlert
+    }
+  }
+
+  export default connect(mapStateToProps)(SideBar);
 
 var styles = StyleSheet.create({
 

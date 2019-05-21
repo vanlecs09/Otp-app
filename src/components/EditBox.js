@@ -4,10 +4,13 @@ import { TextInput, ImageBackground, Image, StyleSheet, Text, View, Button } fro
 class EditBox extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            text: ''
+        }
     }
     render() {
-        const { placeholder, style, textStyle } = this.props;
+        const { placeholder, style, textStyle, textValue } = this.props;
+        // console.log("edit box :  " + textValue);
         return (
             <View style={[styles.SectionStyle, style]}>
                 <ImageBackground
@@ -18,6 +21,10 @@ class EditBox extends Component {
                         style={textStyle}
                         placeholder={placeholder}
                         underlineColorAndroid="transparent"
+                        onChangeText = {(text) => {
+                            this.props.enterTextHandler(text);
+                        }}
+                        value = {textValue}
                     />
                 </ImageBackground>
             </View>

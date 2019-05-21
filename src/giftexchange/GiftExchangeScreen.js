@@ -74,9 +74,6 @@ class GiftExchangeScreen extends React.Component {
         super(props);
         this.state = { showPopUp: false };
         this.titleName = "Đổi quà";
-
-        console.log(Dimensions.get('window'));
-        console.log(Utils.screenScale);
     }
 
 
