@@ -11,7 +11,7 @@ class ButtonImage extends Component {
 		}
 	}
 
-	renderText(viewCombineStyle, text, textStyle) {
+	renderText(viewCombineStyle, text, textStyle) {	
 		<View style={viewCombineStyle}>
 			<Text style={textStyle}>{text}</Text>
 		</View>

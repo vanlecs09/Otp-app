@@ -1,7 +1,9 @@
-import { SELECT_CARD, SELECT_CARD_VALUE, RESET_DEPOSIT } from '../actions';
+import { SELECT_CARD, SELECT_CARD_VALUE, RESET_DEPOSIT, 
+    START_REQUEST, STOP_REQUEST, REQUEST_ERROR, DEPOSIT_REQUEST_SUCCESS, DEPOSIT_STATE_NONE } from '../actions';
 
-const deposit = (state = { cardIndex: 0, cardValueIndex: 0 }, action) => {
+const deposit = (state = { isLoading: false, cardIndex: 0, cardValueIndex: 0, showAlert: false }, action) => {
     const { type, cardIndex, cardValueIndex } = action;
+    console.log(type);
     switch (type) {
         case SELECT_CARD: {
             return {
@@ -16,13 +18,34 @@ const deposit = (state = { cardIndex: 0, cardValueIndex: 0 }, action) => {
             }
         }
         case RESET_DEPOSIT: {
-            var obj = {
+            return {
                 ...state,
                 cardIndex: 0,
                 cardValueIndex: 0
+            };
+        }
+        case START_REQUEST: {
+            return {
+                ...state,
+                status: DEPOSIT_STATE_NONE,
+                isLoading: true,
             }
-            console.log(obj);
-            return obj;
+        }
+        case STOP_REQUEST: {
+            return {
+                ...state,
+                status: DEPOSIT_STATE_NONE,
+                isLoading: false,
+                showAlert: true,
+            }
+        }
+        case DEPOSIT_REQUEST_SUCCESS: {
+            return  {
+                ...state,
+                status: DEPOSIT_REQUEST_SUCCESS,
+                isLoading: false,
+                showAlert: true,
+            }
         }
     }
     return state;

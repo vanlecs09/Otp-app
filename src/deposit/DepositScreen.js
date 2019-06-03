@@ -62,13 +62,22 @@ class DepositScreen extends React.Component {
 
 
     render() {
-        const { showAlert } = this.state;
-        const { cardIndex } = this.props;
-        console.log("deposit render");
+        // const { showAlert } = this.state;
+        const { cardIndex, status, isLoading, showAlert } = this.props;
+        var alertMessage = "";
+        if(status == AppActions.DEPOSIT_STATE_NONE) {
+
+        } else if (status == AppActions.DEPOSIT_REQUEST_SUCCESS) {
+            var alertMessage = "chuc mung bạn abc";
+        } else if (status == AppActions.REQUEST_ERROR) {
+            alertMessage ="ban đã request fail";
+        }
+
+        console.log(showAlert  +  "   "  + alertMessage);
         return (
             <ImageBackground source={require('../../assets/img_bg.png')} style={styles.background}>
                 <AnimatedLoader
-                    visible={this.props.isLoading}
+                    visible={isLoading}
                     overlayColor="rgba(0,0,0,0.5)"
                     animationStyle={styles.lottie}
                     speed={1}
@@ -124,7 +133,8 @@ class DepositScreen extends React.Component {
                                 textStyle={{ fontSize: Utils.moderateScale(20), color: 'white', textAlign: 'center', marginBottom: 5 }}
                                 text="Login screen"
                                 onPress={() => {
-                                    this.showAlert();
+                                    // this.showAlert();
+                                    this.props.requestDepositCard(0,0);
                                 }}
                                 imageSource={require('../../assets/img_btn_1.png')}
                             />
@@ -134,7 +144,7 @@ class DepositScreen extends React.Component {
                                 showProgress={false}
                                 title="Thông báo"
                                 titleStyle={{ color: 'rgb(247,165,117)' }}
-                                message="Bạn muốn dùng 140.000 xu để đổi thể Viettel 10k ?"
+                                message={alertMessage}
                                 closeOnTouchOutside={true}
                                 closeOnHardwareBackPress={false}
                                 showCancelButton={true}
@@ -161,7 +171,10 @@ class DepositScreen extends React.Component {
 
 const mapStateToProps = state => {
     return {
-          cardIndex: state.deposit.cardIndex
+          cardIndex: state.deposit.cardIndex,
+          isLoading: state.deposit.isLoading,
+          status: state.deposit.status,
+          showAlert: state.deposit.showAlert
     }
 }
 
@@ -169,6 +182,9 @@ const mapDispatchToProps = dispatch => {
     return {
         resetDeposit: () => {
             dispatch(AppActions.resetDeposit());
+        },
+        requestDepositCard: (cardType, cardValue) => {
+            dispatch(AppActions.requestDepositCard(cardType, cardValue));
         }
     }
 }
@@ -198,6 +214,9 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
+    lottie: {
+        width: 100,
+        height: 100,
+      },
 
 });
